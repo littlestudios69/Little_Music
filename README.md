@@ -7,11 +7,11 @@ It is a Lavalink Powered all in one Music Bot that supports Reaction Crontros, A
 
 
 ## Table of Content
-[Functions](#functions)
-[Arguments to use Little Music](#arguments-to-use-little-music)
-[More by Little Studios](#more-by-little-studios)
-[Disclaimer](#disclaimer)
-[Selfhosting](#selfhosting)
+- [Functions](#functions)
+- [Arguments to use Little Music](#arguments-to-use-little-music)
+- [More by Little Studios](#more-by-little-studios)
+- [Disclaimer](#disclaimer)
+- [Selfhosting](#selfhosting)
 
 
 ## Functions
