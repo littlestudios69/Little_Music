@@ -8,7 +8,7 @@
 
  **3.** Install all of the packages with **`npm install`**     |  the important packages are   **`npm install discord.js erela.js`**
 
- **4** Fill in the parameters, RIGHT in `botconfig/config.json`!
+ **4** Fill in the parameters, RIGHT in `botconfig/config.sample.json` and rename it to `config.json`!
 
  **5.** [Download Lavalink](https://ci.fredboat.com/repository/download/Lavalink_Build/8735:id/Lavalink.jar) and download Java 15 (Java 13 recommended)
 
