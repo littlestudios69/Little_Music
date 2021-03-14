@@ -1,4 +1,86 @@
+# Little Music
 
+Little Music is another Bot from the Little Studios Family!
+It is a Lavalink Powered all in one Music Bot that supports Reaction Crontros, Autoplay, Youtube & Spotify & Deezer & Soundcloud and even 180+ Radio Stations!
+
+![](https://i.imgur.com/TfybnQm.png)
+
+
+## Table of Content
+[Functions](#functions)
+[Arguments to use Little Music](#arguments-to-use-little-music)
+[More by Little Studios](#more-by-little-studios)
+[Disclaimer](#disclaimer)
+[Selfhosting](#selfhosting)
+
+
+## Functions
+
+
+### Reaction Controls
+
+Just simply start an Song by Typing `m!play <name/url>` and the Embed with the Menu should popup!
+
+![](https://i.imgur.com/ikdmUey.gif)
+
+
+### Request Channel
+
+Start by typing in `m!setup` and the Bot will create an Category and will set up everything (this can only be done by Admins and can only be reset by the Server Owner! Commands will not work in other channels unless you turn it back on with `m!togglerequestonly`)
+
+![](https://i.imgur.com/jX9tXyq.gif)
+
+
+### Radios
+
+Just simply type in `m!radio` to see all Radios! Type `m!radio <number>` to turn a Radio on.
+
+
+### Song of the Day
+
+See the Current song of the day with `m!songoftheday` to play it use `m!playsongoftheday`
+
+
+### Filters
+
+We have many Filters like `m!bassboost` and more! Check it out in the help Command!
+
+
+## Arguments to use Little Music
+
+
+### High Quality Music
+Due to our High Performance Lavalink Audio Nodes we can provide you with the Best Audio Quality that you can get right now!
+
+### 99,99% Uptime
+
+With our High End Servers we can Provide you a 99,99% Uptime!
+
+### Frequent Updates
+
+Due to our Team of Developers we are able to push Frequent Updates!
+
+### User Friendly
+
+Our Bot is very User Friendly due to it doing mostly everything automatically
+
+### No Paywall
+
+We do have a Premium Mode but it is FREE for everyone! 
+And we dont hide Commands that make the Expierience better behind some shady Paywalls
+
+### Open Source
+
+Our Bot is Open Source so you can see what is going on behind the Scenes!
+
+
+## More by Little Studios
+
+As we said this Bot is just another Bot of the Little Studios Family! Make sure to checkout [Little Pika 2.0](https://top.gg/bot/660798952123400202)
+
+
+#### Disclaimer
+This Bot is a Modified fork from [Tomato6966/discord-js-lavalink-Music-Bot-erela-js](https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js) make sure to check it out!
 
 ## Selfhosting
 
