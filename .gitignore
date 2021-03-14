@@ -1,0 +1,4 @@
+node_modules
+logs
+databases
+botconfig/config.json
