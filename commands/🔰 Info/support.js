@@ -3,20 +3,20 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const emoji = require(`../../botconfig/emojis.json`);
 module.exports = {
-    name: "invite",
+    name: "support",
     category: "🔰 Info",
-    aliases: ["add"],
+    aliases: [],
     cooldown: 5,
-    usage: "invite",
-    description: "Gives you an Invite link for this Bot",
+    usage: "support",
+    description: "Gives you an Invite link for the Support Server",
     run: async (client, message, args, user, text, prefix) => {
     try{
       message.channel.send(new MessageEmbed()
         .setColor(ee.color)
-        .setTitle(":heart: Thanks for inviting me!")
+        .setTitle(":heart: Join here!")
         .setFooter(ee.footertext, ee.footericon)
-        .setURL(`https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=1194721105&scope=bot`)
-        .setDescription(`[Click here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=1194721105&scope=bot)`)
+        .setURL(`https://discord.gg/kUuNQwnvCF`)
+        .setDescription(`[Click here](https://discord.gg/kUuNQwnvCF)`)
         .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
 
       );

@@ -5,7 +5,7 @@ const {
 const emoji = require("../botconfig/emojis.json");
 const config = require("../botconfig/config.json");
 const ee = require("../botconfig/embed.json");
-const radios = require("../botconfig/radiostations.json");
+const radios = JSON.parse(require("fs").readFileSync(__dirname + "/../botconfig/radiostations.json"));
 const ms = require("ms")
 module.exports = {
   getMember: function(message, toFind = "") {
@@ -164,123 +164,65 @@ module.exports = {
       console.log(String(e.stack).bgRed)
     }
   },
-  stations: function(client, prefix, message) {
+  stations: async function(client, prefix, message) {
     try{
-      let amount = 0;
-      const stationsembed = new Discord.MessageEmbed().setColor(ee.color).setFooter(ee.footertext, ee.footericon).setTitle("Pick your Station, by typing in the right `INDEX` Number!").setDescription("Example: `?radio 11`");
-      const stationsembed2 = new Discord.MessageEmbed().setColor(ee.color).setFooter(ee.footertext, ee.footericon).setTitle("Pick your Station, by typing in the right `INDEX` Number!").setDescription("Example: `?radio 69`");
-      const stationsembed3 = new Discord.MessageEmbed().setColor(ee.color).setFooter(ee.footertext, ee.footericon).setTitle("Pick your Station, by typing in the right `INDEX` Number!").setDescription("Example: `?radio 180`");
-      let United_Kingdom = "";
-      for (let i = 0; i < radios.EU.United_Kingdom.length; i++) {
-        United_Kingdom += `**${i + 1 + 10 * amount}**[${radios.EU.United_Kingdom[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.United_Kingdom[i].split(" ")[1]})\n`;
-      }
-      stationsembed.addField("🇬🇧 United Kingdom", `>>> ${United_Kingdom}`, true);
-      amount++;
-      let austria = "";
-      for (let i = 0; i < radios.EU.Austria.length; i++) {
-        austria += `**${i + 1 + 10 * amount}**[${radios.EU.Austria[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Austria[i].split(" ")[1]})\n`;
-      }
-      stationsembed.addField("🇦🇹 Austria", `>>> ${austria}`, true);
-      amount++;
-      let Belgium = "";
-      for (let i = 0; i < radios.EU.Belgium.length; i++) {
-        Belgium += `**${i + 1 + 10 * amount}**[${radios.EU.Belgium[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Belgium[i].split(" ")[1]})\n`;
-      }
-      stationsembed.addField("🇧🇪 Belgium", `>>> ${Belgium}`, true);
-      amount++;
-      let Bosnia = "";
-      for (let i = 0; i < radios.EU.Bosnia.length; i++) {
-        Bosnia += `**${i + 1 + 10 * amount}**[${radios.EU.Bosnia[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Bosnia[i].split(" ")[1]})\n`;
-      }
-      stationsembed.addField("🇧🇦 Bosnia", `>>> ${Bosnia}`, true);
-      amount++;
-      let Czech = "";
-      for (let i = 0; i < radios.EU.Czech.length; i++) {
-        Czech += `**${i + 1 + 10 * amount}**[${radios.EU.Czech[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Czech[i].split(" ")[1]})\n`;
-      }
-      stationsembed.addField("🇨🇿 Czech", `>>> ${Czech}`, true);
-      amount++;
-      let Denmark = "";
-      for (let i = 0; i < radios.EU.Denmark.length; i++) {
-        Denmark += `**${i + 1 + 10 * amount}**[${radios.EU.Denmark[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Denmark[i].split(" ")[1]})\n`;
-      }
-      stationsembed.addField("🇩🇰 Denmark", `>>> ${Denmark}`, true);
-      amount++;
-      let germany = "";
-      for (let i = 0; i < radios.EU.Germany.length; i++) {
-        germany += `**${i + 1 + 10 * amount}**[${radios.EU.Germany[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Germany[i].split(" ")[1]})\n`;
-      }
-      stationsembed2.addField("🇩🇪 Germany", `>>> ${germany}`, true);
-      amount++;
-      let Hungary = "";
-      for (let i = 0; i < radios.EU.Hungary.length; i++) {
-        Hungary += `**${i + 1 + 10 * amount}**[${radios.EU.Hungary[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Hungary[i].split(" ")[1]})\n`;
-      }
-      stationsembed2.addField("🇭🇺 Hungary", `>>> ${Hungary}`, true);
-      amount++;
-      let Ireland = "";
-      for (let i = 0; i < radios.EU.Ireland.length; i++) {
-        Ireland += `**${i + 1 + 10 * amount}**[${radios.EU.Ireland[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Ireland[i].split(" ")[1]})\n`;
-      }
-      stationsembed2.addField("🇮🇪 Ireland", `>>> ${Ireland}`, true);
-      amount++;
-      let Italy = "";
-      for (let i = 0; i < radios.EU.Italy.length; i++) {
-        Italy += `**${i + 1 + 10 * amount}**[${radios.EU.Italy[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Italy[i].split(" ")[1]})\n`;
-      }
-      stationsembed2.addField("🇮🇹 Italy", `>>> ${Italy}`, true);
-      amount++;
-      let Luxembourg = "";
-      for (let i = 0; i < radios.EU.Luxembourg.length; i++) {
-        Luxembourg += `**${i + 1 + 10 * amount}**[${radios.EU.Luxembourg[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Luxembourg[i].split(" ")[1]})\n`;
-      }
-      stationsembed2.addField("🇱🇺 Luxembourg", `>>> ${Luxembourg}`, true);
-      amount++;
-      let Romania = "";
-      for (let i = 0; i < radios.EU.Romania.length; i++) {
-        Romania += `**${i + 1 + 10 * amount}**[${radios.EU.Romania[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Romania[i].split(" ")[1]})\n`;
-      }
-      stationsembed2.addField("🇷🇴 Romania", `>>> ${Romania}`, true);
-      amount++;
-      let Serbia = "";
-      for (let i = 0; i < radios.EU.Serbia.length; i++) {
-        Serbia += `**${i + 1 + 10 * amount}**[${radios.EU.Serbia[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Serbia[i].split(" ")[1]})\n`;
-      }
-      stationsembed3.addField("🇷🇸 Serbia", `>>> ${Serbia}`, true);
-      amount++;
-      let Spain = "";
-      for (let i = 0; i < radios.EU.Spain.length; i++) {
-        Spain += `**${i + 1 + 10 * amount}**[${radios.EU.Spain[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Spain[i].split(" ")[1]})\n`;
-      }
-      stationsembed3.addField("🇪🇸 Spain", `>>> ${Spain}`, true);
-      amount++;
-      let Sweden = "";
-      for (let i = 0; i < radios.EU.Sweden.length; i++) {
-        Sweden += `**${i + 1 + 10 * amount}**[${radios.EU.Sweden[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Sweden[i].split(" ")[1]})\n`;
-      }
-      stationsembed3.addField("🇸🇪 Sweden", `>>> ${Sweden}`, true);
-      amount++;
-      let Ukraine = "";
-      for (let i = 0; i < radios.EU.Ukraine.length; i++) {
-        Ukraine += `**${i + 1 + 10 * amount}**[${radios.EU.Ukraine[i].split(" ")[0].replace("-", " ").substr(0, 16)}](${radios.EU.Ukraine[i].split(" ")[1]})\n`;
-      }
-      stationsembed3.addField("🇺🇦 Ukraine", `>>> ${Ukraine}`, true);
-      amount++;
-      let requests = "";
-      for (let i = 0; i < 10; i++) {
-        requests += `**${i + 1 + 10 * amount}**[${radios.OTHERS.request[i].split(" ")[0].replace("-", " ").substr(0, 15)}](${radios.OTHERS.request[i].split(" ")[1]})\n`;
-      }
-      stationsembed3.addField("🧾 OTHERS", `>>> ${requests}`, true);
-      requests = "";
-      for (let i = 10; i < 20; i++) {
-        try {
-          requests += `**${i + 1 + 10 * amount}**[${radios.OTHERS.request[i].split(" ")[0].replace("-", " ").substr(0, 15)}](${radios.OTHERS.request[i].split(" ")[1]})\n`;
-        } catch {}
-      }
-      stationsembed3.addField("🧾 OTHERS", `>>> ${requests}`, true);
-      message.channel.send(stationsembed);
-      message.channel.send(stationsembed2);
-      message.channel.send(stationsembed3);
+      let num = 0
+     let found = false
+     let flags = {
+       "United_Kingdom":"🇬🇧",
+       "Austria":"🇦🇹",
+       "Belgium":"🇧🇪",
+       "Bosnia":"🇧🇦",
+       "Czech":"🇨🇿",
+       "Denmark":"🇩🇰",
+       "Germany":"🇩🇪",
+       "Hungary":"🇭🇺",
+       "Ireland":"🇮🇪",
+       "Italy":"🇮🇹",
+       "Luxembourg":"🇱🇺",
+       "Romania":"🇷🇴",
+       "Serbia":"🇷🇸",
+       "Spain":"🇪🇸",
+       "Sweden":"🇸🇪",
+       "Ukraine":"🇺🇦",
+       "OTHERS":"🧾"
+     }
+     let embeds = []
+     for (var prop in radios.EU) {
+      let msg = ``
+      let embed = new Discord.MessageEmbed()
+
+      .setTitle(`**${flags[prop]? flags[prop] : flags.OTHERS} ${prop.replace("_"," ")}**`)
+     await radios.EU[prop].forEach(el => {
+       num++
+      msg += `> **${num}** \`${el.split(` `)[0]}\`\n`
+     });
+     embed
+     .setDescription(`__To Play a Station use \`m!radio <number>\`!__\n\n${msg}`)
+     .setColor(ee.color)
+     .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
+     .setFooter(ee.footertext, ee.footericon)
+     embeds.push(embed)
+    }
+    
+    for (var prop2 in radios.OTHERS) {
+      let msg = ``
+      let embed = new Discord.MessageEmbed()
+
+      .setTitle(`**${flags[prop]? flags[prop] : flags.OTHERS} ${prop.replace("_"," ")}**`)
+    await radios.OTHERS[prop2].forEach(el => {
+      num++
+      msg += `> **${num}** \`${el.split(` `)[0]}\`\n`
+      
+    });
+    embed
+     .setDescription(`__To Play a Station use \`m!radio <number>\`!__\n\n${msg}`)
+     .setColor(ee.color)
+     .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
+     .setFooter(ee.footertext, ee.footericon)
+     embeds.push(embed)
+    }
+    return embeds
     }catch (e){
       console.log(String(e.stack).bgRed)
     }
@@ -654,7 +596,7 @@ module.exports = {
           .setColor(ee.color)
           .setFooter(ee.footertext, ee.footericon)
           .setTitle("Currently no song is playing!")
-          .setDescription(`Join a voice channel and enter a song name or url to play.\n[Invite Me](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot) • [Support Server](https://discord.gg/kUuNQwnvCF)`)
+          .setDescription(`Join a voice channel and enter a song name or url to play.\n[Invite Me](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=1194721105&scope=bot) • [Support Server](https://discord.gg/kUuNQwnvCF)`)
           .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
           track_info_msg.edit(embed3).catch(e => String(e.stack).yellow);
         queue_info_msg.edit(embed2).catch(e => String(e.stack).yellow);

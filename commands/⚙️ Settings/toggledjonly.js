@@ -18,7 +18,7 @@ module.exports = {
         return message.channel.send(new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle("${emoji.msg.ERROR} Error | Please add a cmd!")
+          .setTitle(`${emoji.msg.ERROR} Error | Please add a cmd!`)
           .setDescription("Example: `toggledjonly skip`")
         );
 
@@ -66,7 +66,7 @@ module.exports = {
               return message.channel.send(new MessageEmbed()
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
-                .setTitle("${emoji.msg.ERROR} Error | Something went wrong!")
+                .setTitle(`${emoji.msg.ERROR} Error | Something went wrong!`)
                 .setDescription("```" + e.stack + "```")
               );
             }

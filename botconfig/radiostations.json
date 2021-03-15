@@ -18,7 +18,6 @@
       "Absolut-90s-Radio http://ais.absoluteradio.co.uk/absolute90s.mp3",
       "Absolut-2000s-Radio http://ais.absoluteradio.co.uk/absolute00s.mp3",
       "Absolut-Classic-Rock http://icy-e-bab-04-cr.sharp-stream.com/absoluteclassicrock.mp3",
-  
       "Top-Radio http://loadbalancing.topradio.be/topradio.mp3", 
   
       "88.6-Radio http://radio886.fluidstream.eu/886_live.mp3", 
@@ -129,7 +128,11 @@
       "Magic-FM http://stream.laut.fm/magic-top100",
       "iLoveRadio https://streams.ilovemusic.de",
       "Chill-Radio https://streams.ilovemusic.de/iloveradio17.mp3",
-      "Us-Rap-Radio https://streams.ilovemusic.de/iloveradio13.mp3"
+      "YouFM http://metafiles.gl-systemhaus.de/hr/youfm_2.m3u",
+      "MyRadio https://stream.laut.fm/myradio",
+      "PlanetRadio https://mp3.planetradio.de/planetradio/hqlivestream.aac",
+      "TAC-FM https://stream.laut.fm/tac-fm"
+      
     ],
     "Hungary":[
       "Argentine-Tango http://streaming2.argentinetangoradio.com/2202_128.mp3",
@@ -280,6 +283,6 @@
       "Deutschlands-Biggest-Hits https://streams.bigfm.de/bigfm-deutschland-128-mp3?usid=0-0-H-M-M-01",
       "Veronika-64 http://149.13.0.80/veronika64",
       "Dechovka-128 http://icecast5.play.cz/dechovka128.mp3"
-    ]  
+        ]  
   }  
 }

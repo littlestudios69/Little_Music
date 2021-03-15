@@ -39,26 +39,24 @@ module.exports = {
 
 const baseembed = new MessageEmbed()
 .setColor(ee.color)
-.setFooter("react with the right emoji!", ee.footericon)
-.setTitle("Pick the right Category")
-.setDescription(`
-💪  **==>** To see the **Source Help** Commands
-
-💰  **==>** To see the **Premium** Commands
-
-🔰  **==>** To see the **Information** Commands
-
-🎶  **==>** To see the **Music** Commands
-
-👀  **==>** To see the **Audio Filter** Commands
-
-⚜️  **==>** To see the **Saved (custom) Queue** Commands
-${owner == true ? `\n👑 **==>** To see the **Owner** Commands` : ""}
-${userperms == true ? `\n⚙️ **==>** To see the **Setting** Commands` : ""}
-`)
+.setFooter(ee.footertext, ee.footericon)
+.setTitle(`${client.user.username} | Help Menu`)
+.addField("💪 **Source Help** Commands",">>> Press 💪 to see this Category", true)
+.addField("💰 **Premium** Commands",">>> Press 💰 to see this Category", true)
+.addField("🔰 **Information** Commands",">>> Press 🔰 to see this Category", true)
+.addField("🎶 **Music** Commands",">>> Press 🎶 to see this Category", true)
+.addField("👀 **Audio Filter** Commands",">>> Press 👀 to see this Category", true)
+.addField("⚜️ **Saved (custom) Queue** Commands",">>> Press ⚜️ to see this Category", true)
+.addField("\u200b", `\u200b`)
+if(owner == true) baseembed.addField("👑 **Bot Owner** Commands",">>> Press 👑 to see this Category", true)
+if(userperms == true) baseembed.addField("⚙️ **Setting** Commands",">>> Press ⚙️ to see this Category", true)
+baseembed
 .addField("\u200b", `\u200b`)
               .addField("\u200b", `\u200b`)
-              .addField("This Code is a Modified Fork from", `https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js`)
+              .addField("📊 Status Page", ">>> [Click here](https://littlestudios.statuspage.io)", true)
+              .addField("🤝 Support Server", ">>> [Click here](https://discord.gg/kUuNQwnvCF)", true)
+              .addField("❤️ Invite Me", `>>> [Click here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=1194721105&scope=bot)`, true)
+              .addField("ℹ️ Disclaimer", `This Bot is a higly Modified Fork of [Tomato6966/discord-js-lavalink-Music-Bot-erela-js](https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js)`, true)
               .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
 
           sendBaseEmbed();

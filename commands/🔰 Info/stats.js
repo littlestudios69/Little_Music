@@ -54,6 +54,10 @@ module.exports = {
         .addField("⚙️ SERVER Commands used:", `>>> \`${guild.commands} Commands\` used in\n**this** Server`,true)
         .addField("🎵 SERVER Songs played:", `>>> \`${guild.songs} Songs\` played in\n**this** Server`,true)
         .addField("📰 GLOBAL Premium list:", `>>> \`${guilds.length} Guilds\`\n\`${users.length} Users\`\n having Premium`,true)
+        .addField("\u200b", "\u200b")
+        .addField("📊 Status Page", ">>> [Click here](https://littlestudios.statuspage.io)", true)
+        .addField("🤝 Support Server", ">>> [Click here](https://discord.gg/kUuNQwnvCF)", true)
+        .addField("ℹ️ Disclaimer", `>>> This Bot is a higly Modified Fork of [Tomato6966/discord-js-lavalink-Music-Bot-erela-js](https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js)`, true)
         .setTitle(`💿 The Stats of ${client.user.username}`)
         .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
 
