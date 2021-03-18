@@ -106,7 +106,7 @@ module.exports = {
                       .setColor(ee.color)
                       .setFooter(ee.footertext, ee.footericon)
                       .setTitle("Little Music | Currently no song is playing!")
-                      .setDescription(`Join a voice channel and enter a song name or url to play.\n[Invite Me](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot) • [Support Server](https://discord.gg/kUuNQwnvCF)`)
+                      .setDescription(`Join a voice channel and enter a song name or url to play.\n[Invite Me](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=1194721105&scope=bot) • [Support Server](https://discord.gg/kUuNQwnvCF)`)
                       .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
                       //send a temp message
                     channel3.send(new MessageEmbed().setColor(ee.color)).then(msg => {
