@@ -18,20 +18,13 @@ module.exports = {
         try {
             if(args[0].toLowerCase() === "true"){
                 config.maintenance = true
-                config.status.text = "Maintenance Mode"
-                config.status.type = "WATCHING"
-                config.status.status = "dnd"
-                client.user.setStatus("dnd")
-                client.user.setActivity("Maintenance Mode", {type:"WATCHING"})
+                
+                
                 message.reply("Turned Dev Mode On")
             } else  if(args[0].toLowerCase() === "false"){
                 config.maintenance = false
-                config.status.text = "Music | m!help"
-                config.status.type = "LISTENING"
-                config.status.status = "online"
-
-                 client.user.setActivity("Music | m!help", {type: "LISTENING", url: config.status.url})
-                 client.user.setStatus("online")
+                
+                
                 message.reply("Turned Dev Mode Off")
             }
             await require("fs").writeFile(`./botconfig/config.json`, JSON.stringify(config, null, 3), (e) => {
