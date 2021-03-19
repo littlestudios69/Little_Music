@@ -178,7 +178,7 @@ module.exports = async (client, message) => {
 
         if(command.category.toLowerCase().includes("admin") ||command.category.toLowerCase().includes("settings") || command.category.toLowerCase().includes("owner")) {
           let required_perms = ["MANAGE_CHANNELS","ADD_REACTIONS","VIEW_CHANNEL","SEND_MESSAGES","MANAGE_MESSAGES"
-          ,"EMBED_LINKS", "ATTACH_FILES","CONNECT","SPEAK", "MANAGE_ROLES"]
+          ,"EMBED_LINKS", "ATTACH_FILES","CONNECT","SPEAK"]
           if(!message.guild.me.hasPermission(required_perms)){
             try{ message.react("❌").catch(e => console.log("couldn't react this is a catch to prevent a crash".grey)); }catch{}
             not_allowed = true;
@@ -186,7 +186,7 @@ module.exports = async (client, message) => {
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
               .setTitle("❌ Error | I don't have enough Permissions!")
-              .setDescription("Please if you want to do it fast give me just `ADMINISTRATOR`, because I need it to delete Messages, Create Channels etc.\n If you don't want to give me them, then those are the exact Permissions which I need: \n> `" + required_perms.join("`, `") +"`")
+              .setDescription("Those are the exact Permissions which I need: \n> `" + required_perms.join("`, `") +"`")
             )
           }
         }
@@ -198,6 +198,14 @@ module.exports = async (client, message) => {
           //try{ message.react(emojis[getRandomInt(emojis.length)]); }catch{}
         //run the command with the parameters:  client, message, args, user, text, prefix,
         if(not_allowed) return;
+        if(config.maintenance){
+          message.channel.send(new Discord.MessageEmbed()
+          .setDescription(`**${client.user.username} is currently in Maintenance Mode!**\n In Maintenance Mode the Bot will restart several Times so your Music may stop working!`)
+          .setColor(ee.wrongcolor)
+          .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
+          .setFooter(ee.footertext, ee.footericon)
+          .setTimestamp())
+        }
         command.run(client, message, args, message.member, args.join(" "), prefix);
       }catch (e) {
         console.log(String(e.stack).red)
@@ -213,17 +221,10 @@ module.exports = async (client, message) => {
         });
       }
     }
-    else //if the command is not found send an info msg
-    return message.channel.send(new Discord.MessageEmbed()
-      .setColor(ee.wrongcolor)
-      .setFooter(ee.footertext, ee.footericon)
-      .setTitle(`❌ Unkown command, try: **\`${prefix}help\`**`)
-      .setDescription(`The prefix for this Guild is: \`${prefix}\`\nYou can also ping me, instead of using a Prefix!\n\nTo play Music simply type \`${prefix}play <Title / Url>\`\n\nTo create a unique Requesting Setup type \`${prefix}setup\``)
-    ).then(msg => {
-      try{
-       msg.delete({timeout: 5000}).catch(e=>console.log("couldn't delete message this is a catch to prevent a crash".grey));
-      }catch{ /* */ }
-    });
+    else return
+      
+    
+    
   }catch (e){
     return message.channel.send(new MessageEmbed()
       .setColor("RED")
