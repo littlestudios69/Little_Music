@@ -30,7 +30,6 @@ function change_status(client){
   try{
     let guild = client.guilds.cache.random()
       client.user.setActivity(config.status.text + ` | [${guild.shardID} / ${client.shard.ids.length-1}]`, {type: config.status.type, url: config.status.url});
-      client.user.setStatus(config.status.status) //status
   }catch (e) {
       console.log(String(e.stack).red);
       client.user.setActivity(client.user.username, { type: "PLAYING" });
