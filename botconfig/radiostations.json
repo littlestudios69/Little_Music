@@ -47,6 +47,7 @@
 
   "EU":{
     "United_Kingdom":[
+	"TAC-FM https://panel.tac-fm.ml/radio/8000/radio.mp3"	    
       "Greatest-hits-Radio https://stream-mz.planetradio.co.uk/net2national.mp3", 
       "Absolut-Radio http://icy-e-bab-02-gos.sharp-stream.com/absoluteradio.mp3",
       "Absolut-70s-Radio http://ais.absoluteradio.co.uk/absolute70s.mp3",
@@ -56,8 +57,6 @@
       "Absolut-Classic-Rock http://icy-e-bab-04-cr.sharp-stream.com/absoluteclassicrock.mp3",
       "Variety-Online-Radio https://everestcast.shoutcastservices.com:1295/stream",
       "BBC-World-Service http://sc11.iad.llnw.net/stream/bbcwssc_mp1_ws-eieuk_backup",
-      "LBC-RADIO http://icecast.thisisdax.com/LBC973",
-	"TAC-FM https://panel.tac-fm.ml/radio/8000/radio.mp3"	    
     ],
     "Austria":[
       "Hitradio-Ö3 https://orf-live.ors-shoutcast.at/oe3-q1a",
@@ -132,7 +131,7 @@
       "YouFM http://metafiles.gl-systemhaus.de/hr/youfm_2.m3u",
       "MyRadio https://stream.laut.fm/myradio",
       "PlanetRadio https://mp3.planetradio.de/planetradio/hqlivestream.aac",
-      "TAC-FM https://stream.laut.fm/tac-fm"
+      "TAC-FM[DE] https://stream.laut.fm/tac-fm"
       
     ],
     "Hungary":[
