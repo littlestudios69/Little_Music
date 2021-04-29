@@ -198,7 +198,7 @@ module.exports = {
       msg += `> **${num}** \`${el.split(` `)[0]}\`\n`
      });
      embed
-     .setDescription(`__To Play a Station use \`m!radio <number>\`!__\n\n${msg}`)
+     .setDescription(`**NEW**\nTry our new Radio TAC-FM! Use \`m!radio 1\` to play it __To Play a Station use \`m!radio <number>\`!__\n\n${msg}`)
      .setColor(ee.color)
      .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
      .setFooter(ee.footertext, ee.footericon)
