@@ -56,7 +56,8 @@
       "Absolut-Classic-Rock http://icy-e-bab-04-cr.sharp-stream.com/absoluteclassicrock.mp3",
       "Variety-Online-Radio https://everestcast.shoutcastservices.com:1295/stream",
       "BBC-World-Service http://sc11.iad.llnw.net/stream/bbcwssc_mp1_ws-eieuk_backup",
-      "LBC-RADIO http://icecast.thisisdax.com/LBC973"
+      "LBC-RADIO http://icecast.thisisdax.com/LBC973",
+	"TAC-FM https://panel.tac-fm.ml/radio/8000/radio.mp3"	    
     ],
     "Austria":[
       "Hitradio-Ö3 https://orf-live.ors-shoutcast.at/oe3-q1a",
