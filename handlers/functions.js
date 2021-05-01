@@ -209,7 +209,7 @@ module.exports = {
       let msg = ``
       let embed = new Discord.MessageEmbed()
 
-      .setTitle(`**${flags[prop]? flags[prop] : flags.OTHERS} ${prop.replace("_"," ")}**`)
+      .setTitle(`**${flags[prop2]? flags[prop2] : flags.OTHERS} ${prop2.replace("_"," ")}**`)
     await radios.OTHERS[prop2].forEach(el => {
       num++
       msg += `> **${num}** \`${el.split(` `)[0]}\`\n`

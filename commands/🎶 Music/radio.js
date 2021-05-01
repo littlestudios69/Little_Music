@@ -39,7 +39,7 @@ module.exports = {
             .setColor(ee.wrongcolor)
             .setFooter(client.user.username, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} Error | Not a valid radio station`)
-            .setDescription(`Please use a Number between \`1\` and \`183\``)
+            .setDescription(`Please use a the following format: \`m!radio <number>\``)
           );
       }
       //if the volume number is not valid
