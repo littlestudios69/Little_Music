@@ -42,7 +42,9 @@
       "538-Radio http://21223.live.streamtheworld.com/RADIO538.mp3",
   
       "radio90-cieszyn http://streams2.radio90.pl:8000/radio90_128kbps_stereo.mp3",
-      "Fama-Radio http://stream2.nadaje.com:8076/,stream.mp3"
+      "Fama-Radio http://stream2.nadaje.com:8076/,stream.mp3",
+      "RexFM http://stream.laut.fm/rexradio",
+      "RexFM-Dance http://stream.laut.fm/rexfm-dance"
     ],
 
   "EU":{
