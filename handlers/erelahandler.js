@@ -656,7 +656,7 @@ module.exports = (client) => {
                           .setColor(ee.color)
                           .setFooter(ee.footertext, ee.footericon)
                           .setTitle(`${player.playing ? emoji.msg.resume : emoji.msg.pause} **${player.queue.current.title}**`)
-                          .addField(`${emoji.msg.time} Duration: `, "`" + format(player.queue.current.duration) + "`", true)
+                          .addField(`${emoji.msg.time} Duration: `, "`" + (player.queue.current.isStream ? "LIVE" : format(player.queue.current.duration)) + "`", true)
                           .addField(`${emoji.msg.song_by} Song By: `, "`" + player.queue.current.author + "`", true)
                           .addField(`${emoji.msg.repeat_mode} Queue length: `, `${player.queue.length} Songs`, true)
                           .addField(`${emoji.msg.time} Progress: `, createBar(player))

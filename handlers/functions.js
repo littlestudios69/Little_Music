@@ -116,9 +116,14 @@ module.exports = {
       let current = player.queue.current.duration !== 0 ? player.position : player.queue.current.duration;
       let total = player.queue.current.duration;
       let size = 15;
-      let bar = String(emoji.msg.progress_bar.leftindicator) + String(emoji.msg.progress_bar.filledframe).repeat(Math.round(size * (current / total))) + String(emoji.msg.progress_bar.emptyframe).repeat(size - Math.round(size * (current / total))) + String(emoji.msg.progress_bar.rightindicator);
-      return `**${bar}**\n**${new Date(player.position).toISOString().substr(11, 8)+" / "+(player.queue.current.duration==0?" ◉ LIVE":new Date(player.queue.current.duration).toISOString().substr(11, 8))}**`;
-    }catch (e){
+      if(player.queue.current.isStream()){
+		let bar = String(emoji.msg.progress_bar.leftindicator) + String(emoji.msg.progress_bar.filledframe).repeat(Math.floor(size / 2)) + String(emoji.msg.progress_bar.emptyframe).repeat(size - Math.floor(size / 2)) + String(emoji.msg.progress_bar.rightindicator);
+		return `**${bar}**\n**${new Date(player.position).toISOString().substr(11, 8)} / ◉ LIVE**`;
+	  }else{
+		let bar = String(emoji.msg.progress_bar.leftindicator) + String(emoji.msg.progress_bar.filledframe).repeat(Math.round(size * (current / total))) + String(emoji.msg.progress_bar.emptyframe).repeat(size - Math.round(size * (current / total))) + String(emoji.msg.progress_bar.rightindicator);
+		return `**${bar}**\n**${new Date(player.position).toISOString().substr(11, 8)+" / "+new Date(player.queue.current.duration).toISOString().substr(11, 8)}**`;
+	  }
+	}catch (e){
       console.log(String(e.stack).bgRed)
     }
 
