@@ -856,7 +856,7 @@ module.exports = {
 
       const filter = (reaction, user) =>
           (reactionemojis.includes(reaction.emoji.name) || reactionemojis.includes(reaction.emoji.name)) && message.author.id === user.id;
-      const collector = queueEmbed.createReactionCollector(filter, { time: 45000 });
+      const collector = queueEmbed.createReactionCollector(filter, { idle: 45000 });
 
       collector.on("collect", async (reaction, user) => {
           try {
@@ -885,6 +885,12 @@ module.exports = {
               await reaction.users.remove(message.author.id);
           } catch { }
       });
+	  collector.on("end", async (collected, reason) => {
+		  if(reason == "idle"){
+			message.channel.send("Time ran out!");
+			queueEmbed.reactions.removeAll();
+		  }
+	  });
 
   }
 }
