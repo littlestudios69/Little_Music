@@ -1,4 +1,3 @@
-//Here the command starts
 const {MessageEmbed} = require("discord.js")
 const config = require("../../botconfig/config.json")
 const ee = require("../../botconfig/embed.json")
@@ -15,11 +14,11 @@ module.exports = {
       message.channel.send(new MessageEmbed()
 	      .setTitle(`Interested in using Lavalink? use \`Erela.js\``)
 	      .setURL("https://www.npmjs.com/package/erela.js")
-	      .addField("Bot's Source Code. ", "Don't just use the source for yourself,... please [invite](https://discord.com/api/oauth2/authorize?client_id=742672021422342165&permissions=8&scope=bot) me too![\`Click here\`](https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js/commit/768f6fbe3314340043cbc341fcc70700b8dc1bdb)")
+	      .addField("Bot's Source Code. ", "Don't just use the source for yourself,... please [invite](https://discord.com/api/oauth2/authorize?client_id=820386439770275850&permissions=1194721105&scope=bot) me too!")
 	      .setColor(ee.color)
 				.setFooter(ee.footertext, ee.footericon)
-	      .addField("Download Lavalink: ", "[\`v3.3.2.3\`](https://github.com/Frederikam/Lavalink/releases/tag/3.3.2.3)" )
-	      .addField("Download application.yml: ", "[\`application.yml\`](https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js/blob/main/application.yml)" )
+	      .addField("Download Lavalink: ", "[\`v3.3.2.5\`](https://github.com/freyacodes/Lavalink/releases/download/3.3.2.5/Lavalink.jar)" )
+	      .addField("Download application.yml: ", "[\`application.yml\`](https://github.com/freyacodes/Lavalink/blob/master/LavalinkServer/application.yml.example)" )
 	      .setDescription(`If your \`application.yml\` has the port set to \`2333\` (or any custom one set by you) and lavalink shows it started on 8080 it means that the application.yml wasn't found in the directory you started lavalink in.
 	      \`\`\`/bot /lavalink - application.yml - lavalink.jar\`\`\`
 	      If your in /bot and you run \`java -jar ./lavalink/lavalink.jar\` it will look for application.yml in /bot. Make sure to start lavalink in the directory the \`application.yml\` is located.`)
@@ -35,12 +34,3 @@ module.exports = {
     }
   }
 };
-/**
-  * @INFO
-  * Bot Coded by Tomato#6966 | https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js
-  * @INFO
-  * Work for Milrato Development | https://milrato.eu
-  * @INFO
-  * Please mention Him / Milrato Development, when using this Code!
-  * @INFO
-*/
