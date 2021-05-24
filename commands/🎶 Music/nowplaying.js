@@ -51,6 +51,7 @@ module.exports = {
           .setURL(player.queue.current.uri)
           .setColor(ee.color)
           .setFooter(ee.footertext, ee.footericon)
+          .setDescription(`**🤖 Current Node:**\n\`${player.node.options.identifier}\` in \`${player.node.options.region}\` with \`${player.node.stats.playingPlayers}\` Players Playing *more stats with m!nodes*`)
           .setTitle(`${player.playing ? `${emoji.msg.resume}` : `${emoji.msg.pause}`} **${player.queue.current.title}**`)
           .addField(`${emoji.msg.time} Duration: `, `\`${format(player.queue.current.duration)}\``, true)
           .addField(`${emoji.msg.song_by} Song By: `, `\`${player.queue.current.author}\``, true)

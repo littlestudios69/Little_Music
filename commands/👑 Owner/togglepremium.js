@@ -106,7 +106,8 @@ module.exports = {
                         )
                     }
                 }
-                guild.owner.send(new MessageEmbed()
+                let owner = await guild.fetchOwner()
+                owner.send(new MessageEmbed()
                   .setFooter(ee.footertext,ee.footericon)
                   .setColor(client.premium.get(args[1], `enabled`) ? ee.color : ee.wrongcolor)
                   .setTitle(`${client.premium.get(args[1], `enabled`) ? `${emoji.msg.SUCCESS} Your Guild \`${guild.name}\` is now allowed and able to use Premium Commands` : `${emoji.msg.ERROR} Your Guild\`${guild.name}\`is not allowed and able to use Premium Commands anymore`}`)
