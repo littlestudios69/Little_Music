@@ -84,6 +84,8 @@ This Bot is a Modified fork from [Tomato6966/discord-js-lavalink-Music-Bot-erela
 
 ## Selfhosting
 
+### WE ARE NOT SUPPORTING SELFHOSTING OF OUR PRODUCTS IN ANY WAY! BUT WE DO GIVE YOU THIS GUIDE! FOR ANY MORE QUESTIONS YOU NEED TO FIGURE IT OUT YOURSELF!
+
  **1.** Install [node.js v12+](https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode) or higher
 
  **2.** Download this repo and unzip it    |    or git clone it
