@@ -100,7 +100,9 @@ This Bot is a Modified fork from [Tomato6966/discord-js-lavalink-Music-Bot-erela
 
  **MAKE SURE THAT THERE IS THE `application.yml` FILE OTHERWISE IT WILL NOT WORK!
 
- **6.** start the bot with **`node index.js`**
+**6.** rename the `database-sample` folder to `database`
+
+ **7.** start the bot with **`node index.js`**
 
 #### **NOTE:**
 
