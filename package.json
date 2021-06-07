@@ -23,12 +23,13 @@
     "got": "^11.8.1",
     "lyrics-finder": "^21.7.0",
     "nekos.life": "^2.0.7",
+    "slash-create": "^3.2.3",
     "utf-8-validate": "^5.0.4",
     "weather-js": "^2.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node shard.js"
   },
   "author": "Tomato#6966",
   "license": "GPL-3.0",

@@ -16,7 +16,7 @@ module.exports = {
         .setTitle(":heart: Join here!")
         .setFooter(ee.footertext, ee.footericon)
         .setURL(`https://discord.gg/kUuNQwnvCF`)
-        .setDescription(`[Click here](https://discord.gg/kUuNQwnvCF)`)
+        .setDescription(`[Click here](https://discord.gg/kUuNQwnvCF) (https://discord.gg/kUuNQwnvCF)`)
         .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
 
       );
