@@ -1,8 +1,7 @@
-const {MessageEmbed} = require("discord.js");
+const Discord = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const emoji = require(`../../botconfig/emojis.json`);
-const {MessageButton, MessageActionRow} = require('discord-buttons');
 
 module.exports = {
     name: "privacy",
@@ -13,23 +12,23 @@ module.exports = {
     description: "Gives you the Privacy Policy",
     run: async (client, message, args, user, text, prefix) => {
         try {
-            let embed = new MessageEmbed()
+            let embed = new Discord.MessageEmbed()
                 .setColor(ee.color)
                 .setFooter(ee.footertext, ee.footericon)
                 .setDescription(`https://little-studios.tech/privacy or https://paste.gg/p/anonymous/fdd9e0258d7f496b89cc880a82c85a2b`)
 
-            let button = new MessageButton()
+            let button = new Discord.MessageButton()
                 .setLabel("Privacy Policy")
-                .setStyle("url")
                 .setURL(`https://paste.gg/p/anonymous/fdd9e0258d7f496b89cc880a82c85a2b`)
+                .setStyle("LINK")
 
-            let actionRow = new MessageActionRow()
-                .addComponent(button)
+            let actionRow = new Discord.MessageActionRow()
+                .addComponents([button])
 
             message.channel.send({components: [actionRow], embed: embed});
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            return message.channel.send(new MessageEmbed()
+            return message.channel.send(new Discord.MessageEmbed()
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
                 .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)

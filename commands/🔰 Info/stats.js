@@ -1,9 +1,8 @@
-const {MessageEmbed} = require("discord.js");
+const Discord = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const emoji = require(`../../botconfig/emojis.json`);
 const {getRandomInt} = require("../../handlers/functions");
-const {MessageButton, MessageActionRow} = require('discord-buttons');
 
 module.exports = {
     name: "stats",
@@ -48,7 +47,7 @@ module.exports = {
             }
             let size = client.setups.filter(s => s.textchannel != "0").size + client.guilds.cache.array().length / 3;
             if (size > client.guilds.cache.array().length) size = client.guilds.cache.array().length;
-            let embed = new MessageEmbed().setColor(ee.color).setFooter(ee.footertext, ee.footericon)
+            let embed = new Discord.MessageEmbed().setColor(ee.color).setFooter(ee.footertext, ee.footericon)
                 .addField("⚙️ GLOBAL Commands used:", `>>> \`${Math.ceil(global.commands * client.guilds.cache.array().length / 10)} Commands\` used\nin **all** Servers`, true)
                 .addField("🎵 GLOBAL Songs played:", `>>> \`${Math.ceil(global.songs * client.guilds.cache.array().length / 10)} Songs\` played in\n**all** Servers`, true)
                 .addField("📰 GLOBAL Setups created:", `>>> \`${Math.ceil(size)} Setups\` created in\n**all** Servers`, true)
@@ -63,24 +62,23 @@ module.exports = {
                 .setTitle(`💿 The Stats of ${client.user.username}`)
                 .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
 
-            let statusPageButton = new MessageButton()
+            let statusPageButton = new Discord.MessageButton()
                 .setLabel("Status Page")
-                .setStyle("url")
+                .setStyle("LINK")
                 .setURL(`https://littlestudios.statuspage.io`)
 
-            let supportButton = new MessageButton()
+            let supportButton = new Discord.MessageButton()
                 .setLabel("Support Server")
-                .setStyle("url")
+                .setStyle("LINK")
                 .setURL(`https://discord.gg/kUuNQwnvCF`)
 
-            let actionRow = new MessageActionRow()
-                .addComponent(statusPageButton)
-                .addComponent(supportButton)
+            let actionRow = new Discord.MessageActionRow()
+                .addComponents([statusPageButton, supportButton])
 
             message.channel.send({components: [actionRow], embed: embed});
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            return message.channel.send(new MessageEmbed()
+            return message.channel.send(new Discord.MessageEmbed()
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
                 .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)

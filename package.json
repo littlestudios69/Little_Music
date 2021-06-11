@@ -13,7 +13,6 @@
     "colors": "^1.4.0",
     "common-tags": "^1.8.0",
     "cpu-stat": "^2.0.1",
-    "discord-buttons": "^3.2.1",
     "discord.js": "github:discordjs/discord.js",
     "enmap": "^5.8.4",
     "erela.js": "^2.3.2",

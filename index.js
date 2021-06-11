@@ -29,7 +29,6 @@ const client = new Discord.Client({
     disableEveryone: true,
     partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
 });
-require('discord-buttons')(client)
 const creator = new SlashCreator({
     applicationID: require("./botconfig/config.json").applicationID,
     publicKey: require("./botconfig/config.json").publicKey,
