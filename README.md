@@ -114,26 +114,8 @@ This Bot is a Modified fork from [Tomato6966/discord-js-lavalink-Music-Bot-erela
 ![](https://github.com/littlestudios69/Little_Music/blob/main/Folder_structure.png)
 
 
-## Windows start Command .bat file
-```bat
-@ECHO OFF
-ECHO ==========================
-ECHO Starting Lavalink
-ECHO ==========================
-start cmd /k java -jar ./Lavalink.jar
-ECHO ==========================
-@ECHO Taking a 5 Second Break for Lavalink
-ECHO ==========================
-timeout /T 5 /nobreak
-ECHO ==========================
-@ECHO Starting BOT
-ECHO ==========================
-start cmd /k node .
-exit /s'
-```
-Windows `start.bat` file
-Which starts Lavalink and the Bot together via one click ;)
+# Start Command
 
-Have it in the Same folder as `index.js` and `Lavalink.jar`
+Once you have completed the steps above, run `node shard.js`. This will launch the Discord.js shard manager. Make sure that you have filled out the `botconfig/config.json` file!
 
 
