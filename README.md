@@ -102,7 +102,7 @@ This Bot is a Modified fork from [Tomato6966/discord-js-lavalink-Music-Bot-erela
 
 **6.** rename the `databases-sample` folder to `databases`
 
- **7.** start the bot with **`node index.js`**
+ **7.** start the bot with **`node shard.js`**
 
 #### **NOTE:**
 
@@ -114,8 +114,48 @@ This Bot is a Modified fork from [Tomato6966/discord-js-lavalink-Music-Bot-erela
 ![](https://github.com/littlestudios69/Little_Music/blob/main/Folder_structure.png)
 
 
-# Start Command
+## Windows start Command .bat file
+```bat
+@ECHO OFF
+ECHO ==========================
+ECHO Starting Lavalink
+ECHO ==========================
+start cmd /k java -jar ./Lavalink.jar
+ECHO ==========================
+@ECHO Taking a 5 Second Break for Lavalink
+ECHO ==========================
+timeout /T 5 /nobreak
+ECHO ==========================
+@ECHO Starting BOT
+ECHO ==========================
+start cmd /k node shard.js
+exit /s'
+```
+Windows `start.bat` file
+Which starts Lavalink and the Bot together via one click ;)
 
-Once you have completed the steps above, run `node shard.js`. This will launch the Discord.js shard manager. Make sure that you have filled out the `botconfig/config.json` file!
+Have it in the Same folder as `index.js` and `Lavalink.jar`
 
+## Linux start Command .sh file
+```sh
+#!/bin/bash
+
+echo "=========================="
+echo "Starting Lavalink"
+echo "=========================="
+screen -dmS Lavalink bash -c 'java -jar Lavalink.jar'
+echo "=========================="
+echo "Starting Little Music after 5 seconds delay"
+echo "=========================="
+screen -dmS LittleMusic bash -c 'sleep 5;node shard.js'
+sleep 5
+echo "=========================="
+echo "Started Lavalink and Little Music. Access Lavalink with"
+echo "screen -r Lavalink and Little Music with screen -r LittleMusic"
+echo "=========================="
+```
+Linux `start.sh` file
+Which starts Lavalink and the Bot together via one command ;)
+
+Have it in the Same folder as `index.js` and `Lavalink.jar`
 
