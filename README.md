@@ -94,7 +94,9 @@ This Bot is a Modified fork from [Tomato6966/discord-js-lavalink-Music-Bot-erela
 
  **4** Fill in the parameters, RIGHT in `botconfig/config.sample.json` and rename it to `config.json`!
 
- **5** Run the Lavalink file with: **`java -jar Lavalink.jar`**
+ **5** Download Lavalink.jar
+
+ **5.1** Run the Lavalink file with: **`java -jar Lavalink.jar`**
 
  **MAKE SURE THAT THERE IS THE `application.yml` FILE OTHERWISE IT WILL NOT WORK!
 
