@@ -58,14 +58,14 @@ baseembed
               .addField("❤️ Invite Me", `>>> [Click here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=1194721105&scope=bot)`, true)
               .addField("ℹ️ Disclaimer", `This Bot is a higly Modified Fork of [Tomato6966/discord-js-lavalink-Music-Bot-erela-js](https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js)`, true)
               .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
-
           sendBaseEmbed();
 
           async function sendBaseEmbed(basemsg){
             try{
+
               let msg;
               if(basemsg) msg = await basemsg.edit(baseembed)
-              else msg = await message.channel.send(baseembed);
+              else msg = await message.channel.send({embeds: [ baseembed] });
 
               let emojis = ["💪", "💰", "🔰", "🎶", "👀", "⚜️"]
               if(owner) emojis.push("👑")
