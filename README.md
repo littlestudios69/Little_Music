@@ -6,6 +6,9 @@ It is a Lavalink Powered all in one Music Bot that supports Reaction Crontros, A
 ![](https://i.imgur.com/TfybnQm.png)
 
 
+## For the Latest Changes please look at the ChangeLog.md!
+[Click Here](https://github.com/littlestudios69/Little_Music/blob/main/ChangeLog.md)
+
 ## Table of Content
 - [Functions](#functions)
 - [Arguments to use Little Music](#arguments-to-use-little-music)
@@ -94,9 +97,7 @@ This Bot is a Modified fork from [Tomato6966/discord-js-lavalink-Music-Bot-erela
 
  **4** Fill in the parameters, RIGHT in `botconfig/config.sample.json` and rename it to `config.json`!
 
- **5** Download Lavalink.jar
-
- **5.1** Run the Lavalink file with: **`java -jar Lavalink.jar`**
+ **5** Run the Lavalink file with: **`java -jar Lavalink.jar`**
 
  **MAKE SURE THAT THERE IS THE `application.yml` FILE OTHERWISE IT WILL NOT WORK!
 
