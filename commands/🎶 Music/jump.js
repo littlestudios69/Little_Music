@@ -14,69 +14,69 @@ module.exports = {
       const { channel } = message.member.voice;
       //if the member is not in a channel, return
       if (!channel)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(client.user.username, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)
+		.setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)]}
         );
       //get the player instance
       const player = client.manager.players.get(message.guild.id);
       //if no player available return error | aka not playing anything
       if (!player)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(client.user.username, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)
+		.setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)]}
         );
       //if not in the same channel as the player, return Error
       if (channel.id !== player.voiceChannel)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setFooter(ee.footertext, ee.footericon)
           .setColor(ee.wrongcolor)
           .setTitle(`${emoji.msg.ERROR} Error | You need to be in my voice channel to use this command!`)
-          .setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)
+		.setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)]}
         );
       //if no args send error plus example
       if(!args[0])
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setFooter(ee.footertext, ee.footericon)
           .setColor(ee.wrongcolor)
           .setTitle(`${emoji.msg.ERROR} Error | Please include to which track you want to jump`)
-          .setDescription(`Example: \`jump ${player.queue.size - 2 <= 0 ? player.queue.size : player.queue.size - 2 }\``)
+		.setDescription(`Example: \`jump ${player.queue.size - 2 <= 0 ? player.queue.size : player.queue.size - 2 }\``)]}
         );
       return message.channel.send(`Please include a track Usage: \`${prefix}removetrack <Trackindex>\` e.g: \`${prefix}removetrack 3\``)
       //if userinput is not a Number
       if(isNaN(args[0]))
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setFooter(ee.footertext, ee.footericon)
           .setColor(ee.wrongcolor)
-          .setTitle(`${emoji.msg.ERROR} Error | It has to be a queue **Number**`)
+		.setTitle(`${emoji.msg.ERROR} Error | It has to be a queue **Number**`)]}
         );
       //if the wished track is bigger then the Queue Size
       if(Number(args[0]) > player.queue.size)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setFooter(ee.footertext, ee.footericon)
           .setColor(ee.wrongcolor)
-          .setTitle(`${emoji.msg.ERROR} Error | That song is not in the queue, sorry!`)
+		.setTitle(`${emoji.msg.ERROR} Error | That song is not in the queue, sorry!`)]}
         );
       //remove all tracks to the jumped song
       player.queue.remove(0, Number(args[0]) - 1);
       //stop the player
       player.stop()
       //Send Success Message
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setTitle(`${emoji.msg.SUCCESS} Success | Jumped to the: \`${args[0]}\` Song`)
         .setDescription(`${emoji.msg.skip_track} Skipped \`${Number(args[0])}\` Songs`)
         .setColor(ee.color)
-        .setFooter(ee.footertext, ee.footericon)
+	  .setFooter(ee.footertext, ee.footericon)]}
       );
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

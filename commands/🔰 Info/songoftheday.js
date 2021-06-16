@@ -12,23 +12,23 @@ module.exports = {
     usage: "songoftheday",
     run: async (client, message, args, cmduser, text, prefix) => {
     try{
-      message.channel.send(new MessageEmbed()
+      message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.color)
         .setFooter(ee.footertext,ee.footericon)
         .setThumbnail(songoftheday.track.thumbnail)
         .setAuthor("Today's Song of the Day", message.author.displayAvatarURL({dynamic: true}))
         .setTitle(songoftheday.track.title)
         .setURL(songoftheday.track.url)
-        .setDescription(`**Duration:**\n\`${songoftheday.track.duration}\`\n\n${songoftheday.message}\n\nCheck out Today's Song of the Day by typing \`${prefix}playsongoftheday\``)
+	  .setDescription(`**Duration:**\n\`${songoftheday.track.duration}\`\n\n${songoftheday.message}\n\nCheck out Today's Song of the Day by typing \`${prefix}playsongoftheday\``)]}
       )
       //play the SONG from YOUTUBE
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

@@ -17,41 +17,41 @@ module.exports = {
     if (prefix === null) prefix = config.prefix;
     //if no args return error
     if (!args[0])
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
         .setTitle(`${emoji.msg.ERROR} Error | Please provide a new prefix!`)
-        .setDescription(`Current prefix: \`${prefix}\``)
+	  .setDescription(`Current prefix: \`${prefix}\``)]}
       );
     //if there are multiple arguments
     if (args[1])
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
-        .setTitle(`${emoji.msg.ERROR} Error | The prefix can\'t have two spaces`)
+	  .setTitle(`${emoji.msg.ERROR} Error | The prefix can\'t have two spaces`)]}
       );
     //if the prefix is too long
     if (args[0].length > 5)
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
-        .setTitle(`${emoji.msg.ERROR} Error | The prefix can\'t be Longer then \`5\``)
+	  .setTitle(`${emoji.msg.ERROR} Error | The prefix can\'t be Longer then \`5\``)]}
       );
     //set the new prefix
     client.settings.set(message.guild.id, args[0], `prefix`);
     //return success embed
-    return message.channel.send(new MessageEmbed()
+    return message.channel.send({embeds: [new MessageEmbed()
       .setColor(ee.color)
       .setFooter(ee.footertext, ee.footericon)
-      .setTitle(`${emoji.msg.SUCCESS} Success | Set new prefix to **\`${args[0]}\`**`)
+	.setTitle(`${emoji.msg.SUCCESS} Success | Set new prefix to **\`${args[0]}\`**`)]}
     );
   } catch (e) {
       console.log(String(e.stack).bgRed)
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
 					.setFooter(ee.footertext, ee.footericon)
           .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-          .setDescription(`\`\`\`${e.message}\`\`\``)
+	  .setDescription(`\`\`\`${e.message}\`\`\``)]}
       );
   }
   }

@@ -109,21 +109,21 @@ module.exports = {
                       .setDescription(`Join a voice channel and enter a song name or url to play.\n[Invite Me](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=1194721105&scope=bot) • [Support Server](https://discord.gg/kUuNQwnvCF)`)
                       .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
                       //send a temp message
-                    channel3.send(new MessageEmbed().setColor(ee.color)).then(msg => {
+                    channel3.send({embeds: [new MessageEmbed().setColor(ee.color)]}).then(msg => {
                         //react with embed 1
-                        msg.edit(embed1)
+                        msg.edit({embeds: [embed1]})
                         //save it in the database
                         client.setups.set(message.guild.id, msg.id,"message_cmd_info");
                         //send another message
-                        channel3.send(new MessageEmbed().setColor(ee.color)).then(msg=>{
+                        channel3.send({embeds: [new MessageEmbed().setColor(ee.color)]}).then(msg=>{
                             //edit the message again
-                            msg.edit(embed2)
+                            msg.edit({embeds: [embed2]})
                             //save it in the database
                             client.setups.set(message.guild.id, msg.id,"message_queue_info");
                             //send an message again
-                            channel3.send(new MessageEmbed().setColor(ee.color)).then(msg => {
+                            channel3.send({embeds: [new MessageEmbed().setColor(ee.color)]}).then(msg => {
                               //edit the message
-                              msg.edit(embed3)
+                              msg.edit({embeds: [embed3]})
                               //react with all reactions
                               msg.react(emoji.react.rewind) //rewind 20 seconds
                               msg.react(emoji.react.forward) //forward 20 seconds
@@ -156,11 +156,11 @@ module.exports = {
                     //log them
                     console.log(String(e.stack).red)
                     //send information
-                    return message.channel.send(new MessageEmbed()
+                    return message.channel.send({embeds: [new MessageEmbed()
                       .setColor(ee.wrongcolor)
                       .setFooter(ee.footertext, ee.footericon)
                       .setTitle(`${emoji.msg.ERROR} Error | Something went Wrong`)
-                      .setDescription(String("```" + e.stack + "```").substr(0, 2048))
+					.setDescription(String("```" + e.stack + "```").substr(0, 2048))]}
                     );
                 }
             })
@@ -168,21 +168,21 @@ module.exports = {
               //log them
               console.log(String(e.stack).red)
               //send information
-              return message.channel.send(new MessageEmbed()
+              return message.channel.send({embeds: [new MessageEmbed()
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
                 .setTitle(`${emoji.msg.ERROR} Error | Something went Wrong`)
-                .setDescription(String("```"+e.stack+"```").substr(0, 2048))
+			  .setDescription(String("```"+e.stack+"```").substr(0, 2048))]}
               );
           }
           })
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            return message.channel.send(new MessageEmbed()
+            return message.channel.send({embeds: [new MessageEmbed()
                 .setColor(ee.wrongcolor)
     						.setFooter(ee.footertext, ee.footericon)
                 .setTitle(`${emoji.msg.ERROR} Error | Something went Wrong`)
-                .setDescription(`\`\`\`${e.message}\`\`\``)
+			.setDescription(`\`\`\`${e.message}\`\`\``)]}
             );
         }
     },

@@ -336,7 +336,7 @@ module.exports = {
                 } catch {}
                 client.channels.cache
                   .get(player.textChannel)
-                  .send(embed)
+                  .send({embeds: [embed]})
                 try {
                   client.channels.cache
                     .get(player.textChannel)
@@ -802,11 +802,8 @@ module.exports = {
             embeds;
         } catch { }
       }
-      if(embeds.length === 1) return message.channel.send(embeds[0])
-      const queueEmbed = await message.channel.send(
-          `**Current Page - ${currentPage + 1}/${embeds.length}**`,
-          embeds[currentPage]
-      );
+      if(embeds.length === 1) return message.channel.send({embeds: [embeds[0]]})
+      const queueEmbed = await message.channel.send({content: `**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds: [embeds[currentPage]]});
       let reactionemojis = ["⬅️", "⏹", "➡️"];
       try {
           for(const emoji of reactionemojis)
@@ -822,20 +819,20 @@ module.exports = {
               if (reaction.emoji.name === reactionemojis[2] || reaction.emoji.id === reactionemojis[2]) {
                   if (currentPage < embeds.length - 1) {
                       currentPage++;
-                      queueEmbed.edit(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
+                      queueEmbed.edit({content: `**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds: [embeds[currentPage]]});
                   }
                   else {
                     currentPage = 0
-                    queueEmbed.edit(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
+                    queueEmbed.edit({content: `**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds: [embeds[currentPage]]});
                   }
               } else if (reaction.emoji.name === reactionemojis[0] || reaction.emoji.id === reactionemojis[0]) {
                   if (currentPage !== 0) {
                       --currentPage;
-                      queueEmbed.edit(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
+				   queueEmbed.edit({content: `**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds: [embeds[currentPage]]});
                   }
                   else {
                     currentPage = embeds.length - 1
-                    queueEmbed.edit(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
+				    queueEmbed.edit({content: `**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds: [embeds[currentPage]]});
                   }
               } else {
                   collector.stop();
@@ -848,10 +845,10 @@ module.exports = {
   },
   swap_pages2: async function(client, message, embeds){
       let currentPage = 0;
-      if(embeds.length === 1) return message.channel.send(embeds[0])
-      queueEmbed = await message.channel.send(
+      if(embeds.length === 1) return message.channel.send({embeds: [embeds[0]]})
+      queueEmbed = await message.channel.send({content: 
           `**Current Page - ${currentPage + 1}/${embeds.length}**`,
-          embeds[currentPage]
+	  embeds: [embeds[currentPage]]}
       );
       let reactionemojis = ["⬅️", "⏹", "➡️"];
       try {
@@ -868,20 +865,20 @@ module.exports = {
               if (reaction.emoji.name === reactionemojis[2] || reaction.emoji.id === reactionemojis[2]) {
                   if (currentPage < embeds.length - 1) {
                       currentPage++;
-                      queueEmbed.edit(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
+                      queueEmbed.edit({content: `**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds: [embeds[currentPage]]});
                   }
                   else {
                     currentPage = 0
-                    queueEmbed.edit(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
+                    queueEmbed.edit({content: `**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds: [embeds[currentPage]]});
                   }
               } else if (reaction.emoji.name === reactionemojis[0] || reaction.emoji.id === reactionemojis[0]) {
                   if (currentPage !== 0) {
                       --currentPage;
-                      queueEmbed.edit(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
+                      queueEmbed.edit({content: `**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds: [embeds[currentPage]]});
                   }
                   else {
                     currentPage = embeds.length - 1
-                    queueEmbed.edit(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
+                    queueEmbed.edit({content: `**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds: [embeds[currentPage]]});
                   }
               } else {
                   collector.stop();

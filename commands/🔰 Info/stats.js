@@ -75,14 +75,14 @@ module.exports = {
             let actionRow = new Discord.MessageActionRow()
                 .addComponents([statusPageButton, supportButton])
 
-            message.channel.send({components: [actionRow], embed: embed});
+            message.channel.send({components: [actionRow], embeds: [embed]});
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            return message.channel.send(new Discord.MessageEmbed()
+            return message.channel.send({embeds: [new Discord.MessageEmbed()
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
                 .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-                .setDescription(`\`\`\`${e.message}\`\`\``)
+			.setDescription(`\`\`\`${e.message}\`\`\``)]}
             );
         }
     }

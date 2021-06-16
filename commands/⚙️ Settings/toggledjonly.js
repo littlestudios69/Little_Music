@@ -15,11 +15,11 @@ module.exports = {
       let cmd = args[0]
       //if no pinged role return error
       if (!cmd)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
           .setTitle(`${emoji.msg.ERROR} Error | Please add a cmd!`)
-          .setDescription("Example: `toggledjonly skip`")
+		.setDescription("Example: `toggledjonly skip`")]}
         );
 
       let musiccmds = [];
@@ -36,55 +36,55 @@ module.exports = {
           if(client.settings.get(message.guild.id, `djonlycmds`).join(" ").toLowerCase().split(" ").includes(args[0].toLowerCase())){
             try{
               client.settings.remove(message.guild.id, args[0], `djonlycmds`);
-              return message.channel.send(new MessageEmbed()
+              return message.channel.send({embeds: [new MessageEmbed()
                 .setColor(ee.color)
                 .setFooter(ee.footertext, ee.footericon)
                 .setTitle(`${emoji.msg.SUCCESS} Success | Set Cmd \`${args[0]}\` to NOT DJ ONLY`)
-                .setDescription(`All Dj-ONLY-CMDS:\n> \`${client.settings.get(message.guild.id, `djonlycmds`).sort(function(a, b){if(a < b) { return -1; }if(a > b) { return 1; }  return 0;}).join("`, `")}\``)
+			  .setDescription(`All Dj-ONLY-CMDS:\n> \`${client.settings.get(message.guild.id, `djonlycmds`).sort(function(a, b){if(a < b) { return -1; }if(a > b) { return 1; }  return 0;}).join("`, `")}\``)]}
               );
             }catch (e){
               console.log(String(e.stack).red);
-              return message.channel.send(new MessageEmbed()
+              return message.channel.send({embeds: [new MessageEmbed()
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
                 .setTitle("${emoji.msg.ERROR} Error | Something went wrong!")
-                .setDescription("```" + e.stack + "```")
+			  .setDescription("```" + e.stack + "```")]}
               );
             }
           }
           else {
             try{
               client.settings.push(message.guild.id, args[0], `djonlycmds`);
-              return message.channel.send(new MessageEmbed()
+              return message.channel.send({embeds: [new MessageEmbed()
                 .setColor(ee.color)
                 .setFooter(ee.footertext, ee.footericon)
                 .setTitle(`${emoji.msg.SUCCESS} Success | Set Cmd \`${args[0]}\` to DJ ONLY`)
-                .setDescription(`All Dj-ONLY-CMDS:\n> \`${client.settings.get(message.guild.id, `djonlycmds`).sort(function(a, b){if(a < b) { return -1; }if(a > b) { return 1; }  return 0;}).join("`, `")}\``)
+			  .setDescription(`All Dj-ONLY-CMDS:\n> \`${client.settings.get(message.guild.id, `djonlycmds`).sort(function(a, b){if(a < b) { return -1; }if(a > b) { return 1; }  return 0;}).join("`, `")}\``)]}
               );
             }catch (e){
               console.log(String(e.stack).red);
-              return message.channel.send(new MessageEmbed()
+              return message.channel.send({embeds: [new MessageEmbed()
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
                 .setTitle(`${emoji.msg.ERROR} Error | Something went wrong!`)
-                .setDescription("```" + e.stack + "```")
+			  .setDescription("```" + e.stack + "```")]}
               );
             }
           }
       }else{
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | Could not find Music Command \`${args[0]}\``)
+		.setTitle(`${emoji.msg.ERROR} Error | Could not find Music Command \`${args[0]}\``)]}
         );
       }
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

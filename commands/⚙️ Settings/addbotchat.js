@@ -15,27 +15,27 @@ module.exports = {
       let channel = message.mentions.channels.first();
       //if no channel pinged return error
       if (!channel)
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
-        .setTitle(`${emoji.msg.ERROR} Error | Please add a Channel via ping, for example: #channel!`)
+	  .setTitle(`${emoji.msg.ERROR} Error | Please add a Channel via ping, for example: #channel!`)]}
       );
       //try to find it, just incase user pings channel from different server
       try {
           message.guild.channels.cache.get(channel.id)
       } catch {
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | It seems that the Channel does not exist in this Server!`)
+		.setTitle(`${emoji.msg.ERROR} Error | It seems that the Channel does not exist in this Server!`)]}
         );
       }
       //if its already in the database return error
       if(client.settings.get(message.guild.id,`botchannel`).includes(channel.id))
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | This Channel is alerady in the List!`)
+		.setTitle(`${emoji.msg.ERROR} Error | This Channel is alerady in the List!`)]}
         );
       //push it into the database
       client.settings.push(message.guild.id, channel.id, `botchannel`);
@@ -47,19 +47,19 @@ module.exports = {
         leftb += `<#` +client.settings.get(message.guild.id, `botchannel`)[i] + `> | `
       }
       //send informational message
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.color)
         .setFooter(ee.footertext, ee.footericon)
         .setTitle(`${emoji.msg.SUCCESS} Success | Added the Bot-Chat \`${channel.name}\``)
-        .setDescription(`All Bot Chats:\n> ${leftb.substr(0, leftb.length - 3)}`)
+	  .setDescription(`All Bot Chats:\n> ${leftb.substr(0, leftb.length - 3)}`)]}
       );
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

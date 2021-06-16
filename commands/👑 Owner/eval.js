@@ -11,16 +11,16 @@ module.exports = {
     usage: `eval <CODE>`,
     run: async (client, message, args, cmduser, text, prefix) => {
       if (!config.ownerIDS.includes(message.author.id))
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(client.user.username, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR}  Error | You are not allowed to run this command! Only the Owner is allowed to run this Cmd`)
+		.setTitle(`${emoji.msg.ERROR}  Error | You are not allowed to run this command! Only the Owner is allowed to run this Cmd`)]}
         );
       if(!args[0])
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(client.user.username, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR}  Error | You have to at least include one evaluation arguments`)
+		.setTitle(`${emoji.msg.ERROR}  Error | You have to at least include one evaluation arguments`)]}
         );
       let evaled;
       try {
@@ -51,11 +51,11 @@ module.exports = {
         });
       } catch (e) {
           console.log(String(e.stack).bgRed)
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.wrongcolor)
   						.setFooter(ee.footertext, ee.footericon)
               .setTitle(`${emoji.msg.ERROR}  ERROR | An error occurred`)
-              .setDescription(`\`\`\`${e.message}\`\`\``)
+		  .setDescription(`\`\`\`${e.message}\`\`\``)]}
           );
       }
     },

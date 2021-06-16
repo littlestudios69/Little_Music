@@ -17,27 +17,27 @@ module.exports = {
       const { channel } = message.member.voice;
       //if not in a voice Channel return error
       if (!channel)
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
-              .setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)
+		  .setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)]}
           );
       //get the player instance
       const player = client.manager.players.get(message.guild.id);
       //if no player available return error | aka not playing anything
       if (!player)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(client.user.username, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)
+		.setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)]}
         );
       //if not in the same channel --> return
       if(player && channel.id !== player.voiceChannel)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
           .setTitle(`${emoji.msg.ERROR} Error | You need to be in my voice channel to use this command!`)
-          .setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)
+		.setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)]}
         );
         //toggle autoplay
         let embed = new MessageEmbed()
@@ -56,14 +56,14 @@ module.exports = {
         try{embed.setFooter(ee.footertext, ee.footericon);}catch{}
         try{embed.addField(`${emoji.msg.disk} Current Track: `, `${player.playing ? `${emoji.msg.resume}` : `${emoji.msg.pause}`} [**${player.queue.current.title}**](${player.queue.current.uri})`)}catch{}
         try{embed.addField(`${emoji.msg.time} Progress: `, createBar(player))}catch{}
-        message.channel.send(embed);
+        message.channel.send({embeds: [embed]});
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.disabled} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

@@ -17,38 +17,38 @@ module.exports = {
       const { channel } = message.member.voice;
       //if the member is not in a channel, return
       if (!channel)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
-          .setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)
+		.setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)]}
         );
       //get the player instance
       const player = client.manager.players.get(message.guild.id);
       //if there is a player and they are not in the same channel, return Error
       if (player && channel.id !== player.voiceChannel)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setFooter(ee.footertext, ee.footericon)
           .setColor(ee.wrongcolor)
           .setTitle(`${emoji.msg.ERROR} Error | You need to be in my voice channel to use this command!`)
-          .setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)
+		.setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)]}
         );
       //if no args send all stations
       if (!args[0]) return swap_pages2(client, message, await stations(client, config.prefix, message))
       //if not a number error
       if (isNaN(args[0])) {
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
             .setFooter(client.user.username, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} Error | Not a valid radio station`)
-            .setDescription(`Please use a the following format: \`m!radio <number>\``)
+		  .setDescription(`Please use a the following format: \`m!radio <number>\``)]}
           );
       }
       //if the volume number is not valid
       if (Number(args[1]) > 150 || Number(args[1]) < 1)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(client.user.username, ee.footericon)
           .setTitle(`${emoji.msg.ERROR} Error | Volume Number out of Range`)
-          .setDescription(`Please use a Number between \`1\` and \`150\``)
+		.setDescription(`Please use a Number between \`1\` and \`150\``)]}
         );
       //define the volume
       let volume;
@@ -90,11 +90,11 @@ module.exports = {
       //if not found send an error
       if(args2 === undefined || args2 === null)
 
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(client.user.username, ee.footericon)
           .setTitle(`${emoji.msg.ERROR} Error | Radio Station not found`)
-          .setDescription(`Please use a Station between \`1\` and \`${num}\``)
+		.setDescription(`Please use a Station between \`1\` and \`${num}\``)]}
         );
       //get song information of it
       const song = { title: args2[0].replace(`-`, ` `), url: args2[1] };
@@ -105,16 +105,16 @@ module.exports = {
         .setTitle(`Searching: ${emoji.msg.search}` + song.title)
         try{embed.setURL(song.url)}catch{}
       //send the message of the searching
-      message.channel.send(embed)
+      message.channel.send({embeds: [embed]})
       //play the radio but make the URL to an array ;) like that: [ `urlhere` ]
       playermanager(client, message, Array(song.url), `song:radio`);
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

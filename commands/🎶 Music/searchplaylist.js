@@ -102,20 +102,20 @@ module.exports = {
             console.log(String(e.stack).red)
             message.channel.send(new Discord.MessageEmbed().setColor(ee.wrongcolor).setTitle(`${emoji.msg.ERROR} Found nothing for: ` + search))
         }*/
-        message.channel.send(new Discord.MessageEmbed()
+        message.channel.send({embeds: [new MessageEmbed()
         .setTitle(emoji.msg.ERROR + " | This Command is not Ready")
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
         .setDescription("This Command is not Ready for use yet! Join our [Support Server](https://discord.com/invite/kUuNQwnvCF) to stay informed!")
-        .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
+        .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")]}
     )
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

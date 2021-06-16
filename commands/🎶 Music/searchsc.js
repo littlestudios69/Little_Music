@@ -16,37 +16,37 @@ module.exports = {
       const { channel } = message.member.voice;
       //if not in a voice Channel return error
       if (!channel)
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
-              .setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)
+		  .setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)]}
           );
       //if no args return error
       if (!args[0])
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
-              .setTitle(`${emoji.msg.ERROR} Error | You need to give me a URL or a search term.`)
+		  .setTitle(`${emoji.msg.ERROR} Error | You need to give me a URL or a search term.`)]}
           );
       //get the player instance
       const player = client.manager.players.get(message.guild.id);
       //f not in the same channel --> return
       if(player && channel.id !== player.voiceChannel)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
           .setTitle(`${emoji.msg.ERROR} Error | You need to be in my voice channel to use this command!`)
-          .setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)
+		.setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)]}
         );
       //search a song for soundcloud
       playermanager(client, message, args, `search:soundcloud`);
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

@@ -31,7 +31,7 @@ module.exports = {
               embed.addField("**Useage**", `\`${config.prefix}${cmd.useage}\``);
               embed.setFooter("Syntax: <> = required, [] = optional");
           }
-          return message.channel.send(embed.setColor(ee.main));
+          return message.channel.send({embeds: [embed.setColor(ee.main)]});
         } else {
           let userperms = message.member.hasPermission("ADMINISTRATOR");
           let owner = config.ownerIDS.includes(message.author.id);
@@ -64,8 +64,8 @@ baseembed
           async function sendBaseEmbed(basemsg){
             try{
               let msg;
-              if(basemsg) msg = await basemsg.edit(baseembed)
-              else msg = await message.channel.send(baseembed);
+              if(basemsg) msg = await basemsg.edit({embeds: [baseembed]})
+              else msg = await message.channel.send({embeds: [baseembed]});
 
               let emojis = ["💪", "💰", "🔰", "🎶", "👀", "⚜️"]
               if(owner) emojis.push("👑")
@@ -92,20 +92,20 @@ baseembed
                   }
               })
             	.catch(e => {
-                return message.channel.send(new MessageEmbed()
+                return message.channel.send({embeds: [new MessageEmbed()
                     .setColor(ee.wrongcolor)
                     .setFooter(ee.footertext, ee.footericon)
                     .setTitle(`${emoji.msg.ERROR} ERROR | TIME RAN OUT  `)
-                    .setDescription(`\`\`\`${e.message}\`\`\``)
+				.setDescription(`\`\`\`${e.message}\`\`\``)]}
                 ).then(msg=>msg.delete({timeout: 4000}).catch(e => console.log("couldn't delete message this is a catch to prevent a crash".grey)))
             	});
             } catch (e) {
                 console.log(String(e.stack).bgRed)
-                return message.channel.send(new MessageEmbed()
+                return message.channel.send({embeds: [new MessageEmbed()
                     .setColor(ee.wrongcolor)
                     .setFooter(ee.footertext, ee.footericon)
                     .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-                    .setDescription(`\`\`\`${e.message}\`\`\``)
+				.setDescription(`\`\`\`${e.message}\`\`\``)]}
                 );
             }
           }
@@ -140,7 +140,7 @@ baseembed
                 try{embed.addField(`\u200b`, `${result[1].join("\n") ? result[1].join("\n") : "\u200b"}`, true);}catch{}
                 try{embed.addField(`\u200b`, `${result[2].join("\n") ? result[2].join("\n") : "\u200b"}`, true);}catch{}
               }
-              message.edit(embed).then(msg=>{
+              message.edit({embeds: [embed]}).then(msg=>{
                   msg.react("⏪")
                   const filter = (reaction, user) => {
                   	return ["⏪"].includes(reaction.emoji.name) && user.id === cmduser;
@@ -158,11 +158,11 @@ baseembed
               })
             } catch (e) {
                 console.log(String(e.stack).bgRed)
-                return message.channel.send(new MessageEmbed()
+                return message.channel.send({embeds: [new MessageEmbed()
                     .setColor(ee.wrongcolor)
                     .setFooter(ee.footertext, ee.footericon)
                     .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-                    .setDescription(`\`\`\`${e.message}\`\`\``)
+				.setDescription(`\`\`\`${e.message}\`\`\``)]}
                 );
             }
           }
@@ -226,11 +226,11 @@ baseembed
       }
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
             .setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

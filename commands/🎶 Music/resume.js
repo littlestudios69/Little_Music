@@ -15,52 +15,52 @@ module.exports = {
       const { channel } = message.member.voice;
       //if the member is not in a channel, return
       if (!channel)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)
+		.setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)]}
         );
       //get the player instance
       const player = client.manager.players.get(message.guild.id);
       //if no player available return error | aka not playing anything
       if (!player)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)
+		.setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)]}
         );
       //if not in the same channel as the player, return Error
       if (channel.id !== player.voiceChannel)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setFooter(ee.footertext, ee.footericon)
           .setColor(ee.wrongcolor)
           .setTitle(`${emoji.msg.ERROR} Error | You need to be in my voice channel to use this command!`)
-          .setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)
+		.setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)]}
         );
       //if its playing then return error
       if (player.playing)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
           .setTitle(`${emoji.msg.ERROR} Error | The song is already resumed!`)
-          .setDescription(`You can pause it with: \`${prefix}pause\``)
+		.setDescription(`You can pause it with: \`${prefix}pause\``)]}
         );
       //pause the player
       player.pause(false);
       //send success message
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
           .setTitle(`${emoji.msg.SUCCESS} Success | ${player.playing ? `${emoji.msg.resume} Resumed` : `${emoji.msg.pause} Paused`} the Player.`)
           .addField(`${emoji.msg.time} Progress: `, createBar(player))
           .setColor(ee.color)
-          .setFooter(ee.footertext, ee.footericon)
+	  .setFooter(ee.footertext, ee.footericon)]}
         );
       } catch (e) {
           console.log(String(e.stack).bgRed)
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.wrongcolor)
   						.setFooter(ee.footertext, ee.footericon)
               .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-              .setDescription(`\`\`\`${e.message}\`\`\``)
+		  .setDescription(`\`\`\`${e.message}\`\`\``)]}
           );
       }
     }
