@@ -81,11 +81,11 @@ module.exports = {
         })
       } catch (e) {
           console.log(String(e.stack).bgRed)
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
               .setTitle(`${emoji.msg.ERROR}  ERROR | An error occurred`)
-              .setDescription(`\`\`\`${e.message}\`\`\``)
+		  .setDescription(`\`\`\`${e.message}\`\`\``)]}
           );
       }
     }

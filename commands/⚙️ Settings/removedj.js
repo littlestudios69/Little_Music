@@ -14,27 +14,27 @@ module.exports = {
       let role = message.mentions.roles.first();
       //if no pinged role return error
       if (!role)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | Please add a Role via ping, @role!`)
+		.setTitle(`${emoji.msg.ERROR} Error | Please add a Role via ping, @role!`)]}
         );
       //try to find the role in the guild just incase he pings a role of a different server
       try {
           message.guild.roles.cache.get(role.id);
       } catch {
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | It seems that the Role does not exist in this Server!`)
+		.setTitle(`${emoji.msg.ERROR} Error | It seems that the Role does not exist in this Server!`)]}
         );
       }
       //if its not in the database return error
       if(!client.settings.get(message.guild.id,`djroles`).includes(role.id))
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | This Role is already a DJ-ROLE!`)
+		.setTitle(`${emoji.msg.ERROR} Error | This Role is already a DJ-ROLE!`)]}
         );
       //remove it from the Database
       client.settings.remove(message.guild.id, role.id, `djroles`);
@@ -46,19 +46,19 @@ module.exports = {
         leftb += `<@&` +client.settings.get(message.guild.id, `djroles`)[i] + `> | `
       }
       //send the success message
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.color)
         .setFooter(ee.footertext, ee.footericon)
         .setTitle(`${emoji.msg.SUCCESS} Success | Removed the DJ ROLE \`${role.name}\``)
-        .setDescription(`All left Dj Roles:\n> ${leftb.substr(0, leftb.length - 3)}`)
+	  .setDescription(`All left Dj Roles:\n> ${leftb.substr(0, leftb.length - 3)}`)]}
       );
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

@@ -12,25 +12,25 @@ module.exports = {
     usage: `status <Type> <TEXT>`,
     run: async (client, message, args, cmduser, text, prefix) => {
       if (!config.ownerIDS.includes(message.author.id))
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(client.user.username, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR}  Error | You are not allowed to run this command! Only the Owner is allowed to run this Cmd`)
+		.setTitle(`${emoji.msg.ERROR}  Error | You are not allowed to run this command! Only the Owner is allowed to run this Cmd`)]}
         );
         try{
             if(!args[0])
-              return message.channel.send(new MessageEmbed()
+              return message.channel.send({embeds: [new MessageEmbed()
                 .setFooter(ee.footertext,ee.footericon)
                 .setColor(ee.wrongcolor)
                 .setTitle(`${emoji.msg.ERROR}  ERROR | Wrong Command Usage | Include a Status Type`)
-                .setDescription(`Try this: \`${prefix}\`status <Type> <TEXT>`)
+			  .setDescription(`Try this: \`${prefix}\`status <Type> <TEXT>`)]}
               )
             if(!args[1])
-              return message.channel.send(new MessageEmbed()
+              return message.channel.send({embeds: [new MessageEmbed()
                 .setFooter(ee.footertext,ee.footericon)
                 .setColor(ee.wrongcolor)
                 .setTitle(`${emoji.msg.ERROR}  ERROR | Wrong Command Usage | Include a Status Text`)
-                .setDescription(`Try this: \`${prefix}\`status <Type> <TEXT>`)
+			  .setDescription(`Try this: \`${prefix}\`status <Type> <TEXT>`)]}
               )
 
             let status = config
@@ -40,26 +40,26 @@ module.exports = {
             fs.writeFile(`./botconfig/config.json`, JSON.stringify(status, null, 3), (e) => {
                 if (e) {
                   console.log(String(e.stack).red);
-                  return message.channel.send(new MessageEmbed()
+                  return message.channel.send({embeds: [new MessageEmbed()
                     .setFooter(ee.footertext,ee.footericon)
                     .setColor(ee.wrongcolor)
                     .setTitle(`${emoji.msg.ERROR}  ERROR Writing the File`)
-                    .setDescription(`\`\`\`${e.message}\`\`\``)
+				  .setDescription(`\`\`\`${e.message}\`\`\``)]}
                   )
                 }
-                return message.channel.send(new MessageEmbed()
+                return message.channel.send({embeds: [new MessageEmbed()
                   .setFooter(ee.footertext,ee.footericon)
                   .setColor(ee.color)
-                  .setTitle(`${emoji.msg.SUCCESS}  Successfully set the new Status`)
+				.setTitle(`${emoji.msg.SUCCESS}  Successfully set the new Status`)]}
                 )
               });
             } catch (e) {
                 console.log(String(e.stack).bgRed)
-                return message.channel.send(new MessageEmbed()
+                return message.channel.send({embeds: [new MessageEmbed()
                     .setColor(ee.wrongcolor)
         						.setFooter(ee.footertext, ee.footericon)
                     .setTitle(`${emoji.msg.ERROR}  ERROR | An error occurred`)
-                    .setDescription(`\`\`\`${e.message}\`\`\``)
+				.setDescription(`\`\`\`${e.message}\`\`\``)]}
                 );
             }
     },

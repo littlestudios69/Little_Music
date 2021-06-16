@@ -18,26 +18,26 @@ module.exports = {
       const { channel } = message.member.voice;
       //if not in a channel return error
       if (!channel && !args[0])
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext,ee.footericon)
-              .setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)
+		  .setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)]}
           );
       //get the player
       const player = client.manager.players.get(message.guild.id);
       //if no player return error
       if (!player && !args[0])
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
-              .setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)
+		  .setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)]}
           );
       //if not in the same channel return error
       if (channel.id !== player.voiceChannel && !args[0])
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
-              .setTitle(`${emoji.msg.ERROR} Error | You need to be in \`${message.guild.channels.cache.get(player.voiceChannel).name}\`!`)
+		  .setTitle(`${emoji.msg.ERROR} Error | You need to be in \`${message.guild.channels.cache.get(player.voiceChannel).name}\`!`)]}
           );
       //get the Song Title
       let title = player.queue.current.title;
@@ -48,10 +48,10 @@ module.exports = {
           //get the new title
           title = args.join(` `);
           //sending the Embed and deleting it afterwards
-          message.channel.send(new MessageEmbed()
+          message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.color)
               .setFooter(ee.footertext, ee.footericon)
-              .setTitle(`Searching lyrics for: ${emoji.msg.search} \`${title}\``.substr(0, 256))
+		  .setTitle(`Searching lyrics for: ${emoji.msg.search} \`${title}\``.substr(0, 256))]}
           )
       }
       //set the lyrics temp. to null
@@ -66,10 +66,10 @@ module.exports = {
               await ksoft.lyrics.get(title).then(async (track) => {
                   //send error if no lyrics
                   if (!track.lyrics)
-                      return message.channel.send(new MessageEmbed()
+                      return message.channel.send({embeds: [new MessageEmbed()
                           .setColor(ee.wrongcolor)
                           .setFooter(ee.footertext, ee.footericon)
-                          .setTitle(`${emoji.msg.ERROR} Error | No Lyrics found for: ${title}`)
+					  .setTitle(`${emoji.msg.ERROR} Error | No Lyrics found for: ${title}`)]}
                       );
                   //safe the lyrics on the temp. variable
                   lyrics = track.lyrics;
@@ -81,19 +81,19 @@ module.exports = {
                   lyrics = await lyricsFinder(title, "");
                   //if no lyrics send and error
                   if (!lyrics)
-                  return message.channel.send(new MessageEmbed()
+                  return message.channel.send({embeds: [new MessageEmbed()
                       .setColor(ee.wrongcolor)
                       .setFooter(ee.footertext, ee.footericon)
-                      .setTitle(`${emoji.msg.ERROR} Error | No Lyrics found for: ${title}`)
+				  .setTitle(`${emoji.msg.ERROR} Error | No Lyrics found for: ${title}`)]}
                   );
                   //catch any errors
               } catch (e) {
                   //log the Error
                   console.log(String(e.stack).yellow);
-                  return message.channel.send(new MessageEmbed()
+                  return message.channel.send({embeds: [new MessageEmbed()
                       .setColor(ee.wrongcolor)
                       .setFooter(ee.footertext, ee.footericon)
-                      .setTitle(`${emoji.msg.ERROR} Error | No Lyrics found for:`)
+				  .setTitle(`${emoji.msg.ERROR} Error | No Lyrics found for:`)]}
                   );
               }
           }
@@ -116,11 +116,11 @@ module.exports = {
     */
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

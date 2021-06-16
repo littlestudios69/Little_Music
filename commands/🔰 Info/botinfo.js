@@ -71,18 +71,18 @@ module.exports = {
               .addField("ℹ️ Disclaimer", `This Bot is a higly Modified Fork of [Tomato6966/discord-js-lavalink-Music-Bot-erela-js](https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js)`)
               .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
 
-            message.channel.send(botinfo);
+            message.channel.send({embeds: [botinfo]});
           })
           .catch(console.error);
 
       });
     } catch (e) {
       console.log(String(e.stack).bgRed)
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
         .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-        .setDescription(`\`\`\`${e.message}\`\`\``)
+	  .setDescription(`\`\`\`${e.message}\`\`\``)]}
       );
     }
   },

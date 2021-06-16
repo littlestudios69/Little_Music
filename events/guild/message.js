@@ -46,11 +46,11 @@ module.exports = async (client, message) => {
             //send informational message
             try{ message.react("❌").catch(e => console.log("couldn't react this is a catch to prevent a crash".grey)); }catch{}
             not_allowed = true;
-            return message.channel.send(new Discord.MessageEmbed()
+            return message.channel.send({embeds: [new Discord.MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
               .setTitle(`❌ Error | Not in the Bot Chat!`)
-              .setDescription(`There is a Bot chat setup in this GUILD! try using the Bot Commands here:\n> ${leftb.substr(0, leftb.length - 3)}`)
+			.setDescription(`There is a Bot chat setup in this GUILD! try using the Bot Commands here:\n> ${leftb.substr(0, leftb.length - 3)}`)]}
             ).then(msg => {
               try{
                msg.delete({timeout: 5000}).catch(e=>console.log("couldn't delete message this is a catch to prevent a crash".grey));
@@ -66,11 +66,11 @@ module.exports = async (client, message) => {
     if (cmd.length === 0){
       not_allowed = true;
       if(matchedPrefix.includes(client.user.id))
-        return message.channel.send(new Discord.MessageEmbed()
+        return message.channel.send({embeds: [new Discord.MessageEmbed()
           .setColor(ee.color)
           .setFooter(ee.footertext,ee.footericon)
           .setTitle(`Hugh? I got pinged? Imma give you some help`)
-          .setDescription(`To see all Commands type: \`${prefix}help\`\n\nTo setup a Unique Song Request System type \`${prefix}setup\`\n\nOther then that, start listening to some music with \`${prefix}play <Song/Url>\``)
+		.setDescription(`To see all Commands type: \`${prefix}help\`\n\nTo setup a Unique Song Request System type \`${prefix}setup\`\n\nOther then that, start listening to some music with \`${prefix}play <Song/Url>\``)]}
         );
       return;
       }
@@ -92,11 +92,11 @@ module.exports = async (client, message) => {
             const timeLeft = (expirationTime - now) / 1000; //get the lefttime
             try{ message.react("❌").catch(e => console.log("couldn't react this is a catch to prevent a crash".grey)); }catch{}
             not_allowed = true;
-            return message.channel.send(new Discord.MessageEmbed()
+            return message.channel.send({embeds: [new Discord.MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext,ee.footericon)
               .setTitle(`❌ Please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`)
-              .addField("Why a delay?", "Because that's the only way how I can prevent you from abusing(spamming) me!")
+			.addField("Why a delay?", "Because that's the only way how I can prevent you from abusing(spamming) me!")]}
             ); //send an information message
           }
         }
@@ -110,11 +110,11 @@ module.exports = async (client, message) => {
           if (!message.member.hasPermission(command.memberpermissions)) {
             try{ message.react("❌").catch(e => console.log("couldn't react this is a catch to prevent a crash".grey)); }catch{}
             not_allowed = true;
-            message.channel.send(new Discord.MessageEmbed()
+            message.channel.send({embeds: [new Discord.MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
               .setTitle("❌ Error | You are not allowed to run this command!")
-              .setDescription(`You need these Permissions: \`${command.memberpermissions.join("`, ``")}\``)
+			.setDescription(`You need these Permissions: \`${command.memberpermissions.join("`, ``")}\``)]}
             ).then(msg => {
               try{
                  msg.delete({timeout: 5000}).catch(e=>console.log("couldn't delete message this is a catch to prevent a crash".grey));
@@ -145,11 +145,11 @@ module.exports = async (client, message) => {
                 if(player && player.queue.current.requester.id !== message.author.id) {
                   try{ message.react("❌").catch(e => console.log("couldn't react this is a catch to prevent a crash".grey)); }catch{}
                   not_allowed = true;
-                   return message.channel.send(new Discord.MessageEmbed()
+                   return message.channel.send({embeds: [new Discord.MessageEmbed()
                     .setColor(ee.wrongcolor)
                     .setFooter(ee.footertext, ee.footericon)
                     .setTitle("❌ Error | You are not allowed to run this command!")
-                    .setDescription(`You need to have one of those Roles:\n${leftb.substr(0, leftb.length-3)}\n\nOr be the Requester (${player.queue.current.requester}) of the current Track!`)
+				   .setDescription(`You need to have one of those Roles:\n${leftb.substr(0, leftb.length-3)}\n\nOr be the Requester (${player.queue.current.requester}) of the current Track!`)]}
                   ).then(msg => {
                     try{
                        msg.delete({timeout: 5000}).catch(e=>console.log("couldn't delete message this is a catch to prevent a crash".grey));
@@ -166,11 +166,11 @@ module.exports = async (client, message) => {
            client.settings.get(message.guild.id, `requestonly`)){
              try{ message.react("❌").catch(e => console.log("couldn't react this is a catch to prevent a crash".grey)); }catch{}
              not_allowed = true;
-              return message.channel.send(new Discord.MessageEmbed()
+              return message.channel.send({embeds: [new Discord.MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
               .setTitle("❌ Error | You are not allowed to run this Command here!")
-              .setDescription(`Please run it in: ${message.guild.channels.cache.get(client.setups.get(message.guild.id, "textchannel"))} | To enable that you can use the Command anywhere type: \`${prefix}togglerequestonly\``)
+              .setDescription(`Please run it in: ${message.guild.channels.cache.get(client.setups.get(message.guild.id, "textchannel"))} | To enable that you can use the Command anywhere type: \`${prefix}togglerequestonly\``)]}
             )
 
         }
@@ -182,11 +182,11 @@ module.exports = async (client, message) => {
           if(!message.guild.me.hasPermission(required_perms)){
             try{ message.react("❌").catch(e => console.log("couldn't react this is a catch to prevent a crash".grey)); }catch{}
             not_allowed = true;
-            return message.channel.send(new Discord.MessageEmbed()
+            return message.channel.send({embeds: [new Discord.MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
               .setTitle("❌ Error | I don't have enough Permissions!")
-              .setDescription("Those are the exact Permissions which I need: \n> `" + required_perms.join("`, `") +"`")
+			.setDescription("Those are the exact Permissions which I need: \n> `" + required_perms.join("`, `") +"`")]}
             )
           }
         }
@@ -199,21 +199,21 @@ module.exports = async (client, message) => {
         //run the command with the parameters:  client, message, args, user, text, prefix,
         if(not_allowed) return;
         if(config.maintenance){
-          message.channel.send(new Discord.MessageEmbed()
+          message.channel.send({embeds: [new Discord.MessageEmbed()
           .setDescription(`**${client.user.username} is currently in Maintenance Mode!**\n In Maintenance Mode the Bot will restart several Times so your Music may stop working!`)
           .setColor(ee.wrongcolor)
           .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
           .setFooter(ee.footertext, ee.footericon)
-          .setTimestamp())
+          .setTimestamp()]})
         }
         command.run(client, message, args, message.member, args.join(" "), prefix);
       }catch (e) {
         console.log(String(e.stack).red)
-        return message.channel.send(new Discord.MessageEmbed()
+        return message.channel.send({embeds: [new Discord.MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
           .setTitle("❌ Something went wrong while, running the: `" + command.name + "` command")
-          .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         ).then(msg => {
           try{
              msg.delete({timeout: 5000}).catch(e=>console.log("couldn't delete message this is a catch to prevent a crash".grey))
@@ -226,10 +226,10 @@ module.exports = async (client, message) => {
     
     
   }catch (e){
-    return message.channel.send(new MessageEmbed()
+    return message.channel.send({embeds: [new MessageEmbed()
       .setColor("RED")
       .setTitle(`❌ ERROR | An error occurred`)
-      .setDescription(`\`\`\`${e.message}\`\`\``)
+	.setDescription(`\`\`\`${e.message}\`\`\``)]}
     );
   }
 }

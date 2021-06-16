@@ -32,7 +32,7 @@ module.exports = {
         .addField("🤝 Support Server", "[Click here](https://discord.gg/kUuNQwnvCF)", true)
         .addField("ℹ️ Disclaimer", `This Bot is a higly Modified Fork of [Tomato6966/discord-js-lavalink-Music-Bot-erela-js](https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js)`)
         .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
-      message.channel.send(embed);
+      message.channel.send({embeds: [embed]});
     } catch (e) {
         console.log(String(e.stack).bgRed)
         return message.channel.send(new MessageEmbed()

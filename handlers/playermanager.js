@@ -32,16 +32,16 @@ module.exports = async (client, message, args, type) => {
     const permissions = channel.permissionsFor(client.user);
 
     if (!permissions.has("CONNECT"))
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
-        .setTitle("❌ Error | I need permissions to join your channel")
+	  .setTitle("❌ Error | I need permissions to join your channel")]}
       );
     if (!permissions.has("SPEAK"))
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
-        .setTitle("❌ Error | I need permissions to speak in your channel")
+	  .setTitle("❌ Error | I need permissions to speak in your channel")]}
       );
 
     if(method[0] === "song")
@@ -55,10 +55,10 @@ module.exports = async (client, message, args, type) => {
     else if(method[0] === "skiptrack")
       skiptrack(client, message, args, type);
     else
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
-        .setTitle("❌ Error | No valid search Term? ...")
+	  .setTitle("❌ Error | No valid search Term? ...")]}
       );
 }
 
@@ -73,10 +73,10 @@ async function similar(client, message, args, type) {
     const res = await client.manager.search(mixURL, message.author);
     //if nothing is found, send error message, plus if there  is a delay for the empty QUEUE send error message TOO
     if (!res || res.loadType === 'LOAD_FAILED' || res.loadType !== 'PLAYLIST_LOADED') {
-      return client.channels.cache.get(player.textChannel).send(new MessageEmbed()
+      return client.channels.cache.get(player.textChannel).send({embeds: [new MessageEmbed()
         .setTitle("❌ Error | Found nothing related for the latest Song")
         .setColor(ee.wrongcolor)
-        .setFooter(ee.footertext, ee.footericon)
+	  .setFooter(ee.footertext, ee.footericon)]}
       );
     }
     //if its just adding do this
@@ -97,7 +97,7 @@ async function similar(client, message, args, type) {
           try{embed2.addField("🔂 Queue length: ", `\`${player.queue.length} Songs\``, true)}catch{}
           try{embed2.setFooter(`Requested by: ${res.tracks[randomtracknum].requester.tag}`, res.tracks[randomtracknum].requester.displayAvatarURL({  dynamic: true  }))}catch{}
 
-      return message.channel.send(embed2).then(msg => {
+      return message.channel.send({embeds: [embed2]}).then(msg => {
       try{
        msg.delete({timeout: 4000}).catch(e=>console.log("couldn't delete message this is a catch to prevent a crash".grey));
       }catch{ /* */ }
@@ -120,11 +120,11 @@ async function similar(client, message, args, type) {
           .setFooter(ee.footertext, ee.footericon)
           .setDescription(results)
           .setFooter(`Search-Request by: ${track.requester.tag}`, track.requester.displayAvatarURL({  dynamic: true}))
-      message.channel.send(searchembed)
-      await message.channel.send(new Discord.MessageEmbed()
+      message.channel.send({embeds: [searchembed]})
+      await message.channel.send({embeds: [new Discord.MessageEmbed()
       .setColor(ee.color)
       .setFooter(ee.footertext, ee.footericon)
-      .setTitle("👍 Pick your Song with the `INDEX Number`")
+      .setTitle("👍 Pick your Song with the `INDEX Number`")]}
     )
       try {
           collected = await message.channel.awaitMessages(filter, {
@@ -134,35 +134,35 @@ async function similar(client, message, args, type) {
           });
       } catch (e) {
           if (!player.queue.current) player.destroy();
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
             .setTitle("❌ Error | You didn't provide a selection")
             .setColor(ee.wrongcolor)
-            .setFooter(ee.footertext, ee.footericon)
+		  .setFooter(ee.footertext, ee.footericon)]}
           );
       }
       const first = collected.first().content;
       if (first.toLowerCase() === 'end') {
           if (!player.queue.current) player.destroy();
-            return message.channel.send(new Discord.MessageEmbed()
+            return message.channel.send({embeds: [new Discord.MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
-              .setTitle('❌ Error | Cancelled selection.')
+			.setTitle('❌ Error | Cancelled selection.')]}
             );
       }
       const index = Number(first) - 1;
       if (index < 0 || index > max - 1)
-        return message.channel.send(new Discord.MessageEmbed()
+        return message.channel.send({embeds: [new Discord.MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle(`❌ Error | The number you provided too small or too big (1-${max}).`)
+		.setTitle(`❌ Error | The number you provided too small or too big (1-${max}).`)]}
         );
       track = res.tracks[index];
       if(!res.tracks[0])
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
           .setTitle(String("❌ Error | Found nothing for: **`" + player.queue.current.title).substr(0, 256-3) + "`**")
-          .setDescription(`Please retry!`)
+		.setDescription(`Please retry!`)]}
         );
       if (player.state !== "CONNECTED") {
           // Connect to the voice channel and add the track to the queue
@@ -181,7 +181,7 @@ async function similar(client, message, args, type) {
               try{embed.addField("🔂 Queue length: ", `\`${player.queue.length} Songs\``, true)}catch{}
               try{embed.setFooter(`Requested by: ${track.requester.tag}`, track.requester.displayAvatarURL({dynamic: true}))}catch{}
           if(isrequestchannel(client, message)) edit_request_message_queue_info(client, player);
-          return message.channel.send(embed).then(msg => {
+          return message.channel.send({embeds: [embed]}).then(msg => {
           try{
            msg.delete({timeout: 4000}).catch(e=>console.log("couldn't delete message this is a catch to prevent a crash".grey));
           }catch{ /* */ }
@@ -190,10 +190,10 @@ async function similar(client, message, args, type) {
     }
   } catch (e) {
       console.log(String(e.stack).red)
-      return message.channel.send(new Discord.MessageEmbed()
+      return message.channel.send({embeds: [new Discord.MessageEmbed()
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
-        .setTitle(String("❌ Error | Found nothing for: **`" + player.queue.current.title).substr(0, 256-3) + "`**")
+	  .setTitle(String("❌ Error | Found nothing for: **`" + player.queue.current.title).substr(0, 256-3) + "`**")]}
       )
   }
 }
@@ -212,11 +212,11 @@ async function search(client, message, args, type) {
             };
         } catch (e) {
             console.log(String(e.stack).red)
-           return message.channel.send(new MessageEmbed()
+           return message.channel.send({embeds: [new MessageEmbed()
              .setColor(ee.wrongcolor)
              .setFooter(ee.footertext, ee.footericon)
              .setTitle(`❌ Error | There was an error while searching:`)
-             .setDescription(`\`\`\`${e.message}\`\`\``)
+		   .setDescription(`\`\`\`${e.message}\`\`\``)]}
            );
         }
 
@@ -231,17 +231,17 @@ async function search(client, message, args, type) {
             .map((track, index) => `**${++index})** [\`${String(track.title).substr(0, 60).split("[").join("{").split("]").join("}")}\`](${track.uri}) - \`${format(track.duration).split(" | ")[0]}\``)
             .join('\n');
 
-        message.channel.send(new Discord.MessageEmbed()
+        message.channel.send({embeds: [new Discord.MessageEmbed()
             .setTitle(`Search result for: 🔎 **\`${search}`.substr(0, 256-3) + "`**")
             .setColor(ee.color).setFooter(ee.footertext, ee.footericon)
             .setDescription(results)
-            .setFooter(`Search-Request by: ${track.requester.tag}`, track.requester.displayAvatarURL({dynamic: true}))
+		.setFooter(`Search-Request by: ${track.requester.tag}`, track.requester.displayAvatarURL({dynamic: true}))]}
           )
 
-        await message.channel.send(new Discord.MessageEmbed()
+        await message.channel.send({embeds: [new Discord.MessageEmbed()
           .setColor(ee.color)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle("Pick your Song with the `INDEX Number`")
+		.setTitle("Pick your Song with the `INDEX Number`")]}
         )
         try {
             collected = await message.channel.awaitMessages(filter, {
@@ -251,35 +251,35 @@ async function search(client, message, args, type) {
             });
         } catch (e) {
             if (!player.queue.current) player.destroy();
-            return message.channel.send(new MessageEmbed()
+            return message.channel.send({embeds: [new MessageEmbed()
               .setTitle("❌ Error | You didn't provide a selection")
               .setColor(ee.wrongcolor)
-              .setFooter(ee.footertext, ee.footericon)
+			.setFooter(ee.footertext, ee.footericon)]}
             );
         }
         const first = collected.first().content;
         if (first.toLowerCase() === 'end') {
             if (!player.queue.current) player.destroy();
-              return message.channel.send(new Discord.MessageEmbed()
+              return message.channel.send({embeds: [new Discord.MessageEmbed()
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
-                .setTitle('❌ Error | Cancelled selection.')
+			  .setTitle('❌ Error | Cancelled selection.')]}
               );
         }
         const index = Number(first) - 1;
         if (index < 0 || index > max - 1)
-          return message.channel.send(new Discord.MessageEmbed()
+          return message.channel.send({embeds: [new Discord.MessageEmbed()
             .setColor(ee.wrongcolor)
             .setFooter(ee.footertext, ee.footericon)
-            .setTitle(`❌ Error | The number you provided too small or too big (1-${max}).`)
+		  .setTitle(`❌ Error | The number you provided too small or too big (1-${max}).`)]}
           );
         track = res.tracks[index];
         if(!res.tracks[0])
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
             .setFooter(ee.footertext, ee.footericon)
             .setTitle(String("❌ Error | Found nothing for: **`" + search).substr(0, 256-3) + "`**")
-            .setDescription(`Please retry!`)
+		  .setDescription(`Please retry!`)]}
           );
         // Create the player
         let player = client.manager.create({
@@ -307,7 +307,7 @@ async function search(client, message, args, type) {
               try{embed3.addField("💯 Song By: ", `\`${track.author}\``, true)}catch{}
               try{embed3.addField("🔂 Queue length: ", `\`${player.queue.length} Songs\``, true)}catch{}
               try{embed3.setFooter(`Requested by: ${track.requester.tag}`, track.requester.displayAvatarURL({dynamic: true}))}catch{}
-            return message.channel.send(embed3).then(msg => {
+            return message.channel.send({embeds: [embed3]}).then(msg => {
             try{
              msg.delete({timeout: 4000}).catch(e=>console.log("couldn't delete message this is a catch to prevent a crash".grey));
             }catch{ /* */ }
@@ -316,10 +316,10 @@ async function search(client, message, args, type) {
 
     } catch (e) {
         console.log(String(e.stack).red)
-        message.channel.send(new Discord.MessageEmbed()
+        message.channel.send({embeds: [new Discord.MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle(String("❌ Error | Found nothing for: **`" + search).substr(0, 256-3) + "`**")
+		.setTitle(String("❌ Error | Found nothing for: **`" + search).substr(0, 256-3) + "`**")]}
         )
     }
 }
@@ -338,19 +338,19 @@ async function playlist(client, message, args, type) {
             };
         } catch (e) {
             console.log(String(e.stack).red)
-           return message.channel.send(new MessageEmbed()
+           return message.channel.send({embeds: [new MessageEmbed()
              .setColor(ee.wrongcolor)
              .setFooter(ee.footertext, ee.footericon)
              .setTitle(`❌ Error | There was an error while searching:`)
-             .setDescription(`\`\`\`${e.message}\`\`\``)
+		   .setDescription(`\`\`\`${e.message}\`\`\``)]}
            );
         }
     if(!res.tracks[0])
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
         .setTitle(String("❌ Error | Found nothing for: **`" + search).substr(0, 256-3) + "`**")
-        .setDescription(`Please retry!`)
+	  .setDescription(`Please retry!`)]}
       );
   let player = client.manager.create({
         guild: message.guild.id,
@@ -371,7 +371,7 @@ async function playlist(client, message, args, type) {
         try{playlistembed.addField("⌛ Duration: ", `\`${format(res.playlist.duration)}\``, true)}catch{}
         try{playlistembed.addField("🔂 Queue length: ", `\`${player.queue.length} Songs\``, true)}catch{}
         try{playlistembed.setFooter(`Requested by: ${message.author.tag}`, message.author.displayAvatarURL({  dynamic: true}))}catch{}
-        message.channel.send(playlistembed).then(msg => {
+        message.channel.send({embeds: [playlistembed]}).then(msg => {
         try{
          msg.delete({timeout: 4000}).catch(e=>console.log("couldn't delete message this is a catch to prevent a crash".grey));
         }catch{ /* */ }
@@ -388,7 +388,7 @@ async function playlist(client, message, args, type) {
         try{playlistembed2.addField("⌛ Duration: ", `\`${format(res.playlist.duration)}\``, true)}catch{}
         try{playlistembed2.addField("🔂 Queue length: ", `\`${player.queue.length} Songs\``, true)}catch{}
         try{playlistembed2.setFooter(`Requested by: ${message.author.tag}`, message.author.displayAvatarURL({dynamic: true}))}catch{}
-        return message.channel.send(playlistembed2).then(msg => {
+        return message.channel.send({embeds: [playlistembed2]}).then(msg => {
         try{
          msg.delete({timeout: 4000}).catch(e=>console.log("couldn't delete message this is a catch to prevent a crash".grey));
         }catch{ /* */ }
@@ -397,10 +397,10 @@ async function playlist(client, message, args, type) {
 
 } catch (e) {
     console.log(String(e.stack).red)
-    message.channel.send(new Discord.MessageEmbed()
+    message.channel.send({embeds: [new Discord.MessageEmbed()
       .setColor(ee.wrongcolor)
       .setFooter(ee.footertext, ee.footericon)
-      .setTitle(String("❌ Error | Found nothing for: **`" + search).substr(0, 256-3) + "`**")
+	.setTitle(String("❌ Error | Found nothing for: **`" + search).substr(0, 256-3) + "`**")]}
     )
 }
 }
@@ -422,19 +422,19 @@ async function song(client, message, args, type) {
         };
     } catch (e) {
         console.log(String(e.stack).red)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
           .setTitle(`❌ Error | There was an error while searching:`)
-          .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
     if(!res.tracks[0])
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
         .setTitle(String("❌ Error | Found nothing for: **`" + search).substr(0, 256-3) + "`**")
-        .setDescription(`Please retry!`)
+	  .setDescription(`Please retry!`)]}
       );
     // Create the player
     let player = client.manager.create({
@@ -465,7 +465,7 @@ async function song(client, message, args, type) {
           try{playembed.addField("💯 Song By: ", `\`${res.tracks[0].author}\``, true)}catch{}
           try{playembed.addField("🔂 Queue length: ", `\`${player.queue.length} Songs\``, true)}catch{}
           try{playembed.setFooter(`Requested by: ${res.tracks[0].requester.tag}`, res.tracks[0].requester.displayAvatarURL({dynamic: true}))}catch{}
-        return message.channel.send(playembed).then(msg => {
+        return message.channel.send({embeds: [playembed]}).then(msg => {
         try{
          msg.delete({timeout: 4000}).catch(e=>console.log("couldn't delete message this is a catch to prevent a crash".grey));
         }catch{ /* */ }
@@ -473,10 +473,10 @@ async function song(client, message, args, type) {
     }
 } catch (e) {
     console.log(String(e.stack).red)
-    message.channel.send(new Discord.MessageEmbed()
+    message.channel.send({embeds: [new Discord.MessageEmbed()
       .setColor(ee.wrongcolor)
       .setFooter(ee.footertext, ee.footericon)
-      .setTitle(String("❌ Error | Found nothing for: **`" + search).substr(0, 256-3) + "`**")
+	.setTitle(String("❌ Error | Found nothing for: **`" + search).substr(0, 256-3) + "`**")]}
     )
 }
 
@@ -499,19 +499,19 @@ async function skiptrack(client, message, args, type) {
           };
       } catch (e) {
           console.log(String(e.stack).red)
-            return message.channel.send(new MessageEmbed()
+            return message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, ee.footericon)
               .setTitle(`❌ Error | There was an error while searching:`)
-              .setDescription(`\`\`\`${e.message}\`\`\``)
+			.setDescription(`\`\`\`${e.message}\`\`\``)]}
             );
       }
       if(!res.tracks[0])
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
           .setTitle(String("❌ Error | Found nothing for: **`" + search).substr(0, 256-3) + "`**")
-          .setDescription(`Please retry!`)
+		.setDescription(`Please retry!`)]}
         );
       // Create the player
       let player = client.manager.create({
@@ -546,10 +546,10 @@ async function skiptrack(client, message, args, type) {
       }
   } catch (e) {
       console.log(String(e.stack).red)
-      return message.channel.send(new Discord.MessageEmbed()
+      return message.channel.send({embeds: [new Discord.MessageEmbed()
         .setColor(ee.wrongcolor)
         .setFooter(ee.footertext, ee.footericon)
-        .setTitle(String("❌ Error | Found nothing for: **`" + search).substr(0, 256-3) + "`**")
+	  .setTitle(String("❌ Error | Found nothing for: **`" + search).substr(0, 256-3) + "`**")]}
       )
   }
 }

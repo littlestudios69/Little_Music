@@ -14,36 +14,36 @@ module.exports = {
         const { channel } = message.member.voice;
         //if the member is not in a channel, return
         if (!channel)
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
             .setFooter(client.user.username, ee.footericon)
-            .setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)
+		  .setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)]}
           );
         //get the player instance
         const player = client.manager.players.get(message.guild.id);
         //if no player available return error | aka not playing anything
         if (!player)
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
             .setFooter(client.user.username, ee.footericon)
-            .setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)
+		  .setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)]}
           );
         //if not in the same channel as the player, return Error
         if (channel.id !== player.voiceChannel)
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
             .setFooter(ee.footertext, ee.footericon)
             .setColor(ee.wrongcolor)
             .setTitle(`${emoji.msg.ERROR} Error | You need to be in my voice channel to use this command!`)
-            .setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)
+		  .setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)]}
           );
         //if no args send error
         if (!args[0])
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
             .setFooter(client.user.username, ee.footericon)
             .setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} Error | Please add your method!`)
-            .setDescription(`\`loop song\` / \`loop queue\``)
+		  .setDescription(`\`loop song\` / \`loop queue\``)]}
           );
         //if arg is somehow song / track
         if (args[0].toLowerCase() === `song` || args[0].toLowerCase() === `track` || args[0].toLowerCase() === `s` || args[0].toLowerCase() === `t`) {
@@ -60,7 +60,7 @@ module.exports = {
             //toggle track repeat to the reverse old mode
             player.setTrackRepeat(!player.trackRepeat);
             //Send Success Message
-            return message.channel.send(embed)
+            return message.channel.send({embeds: [embed]})
         }
         //if input is queue
         else if (args[0].toLowerCase() === `queue` || args[0].toLowerCase() === `qu` || args[0].toLowerCase() === `q`) {
@@ -77,24 +77,24 @@ module.exports = {
             //toggle queue repeat to the reverse old mode
             player.setQueueRepeat(!player.queueRepeat);
             //Send Success Message
-            return message.channel.send(embed);
+            return message.channel.send({embeds: [embed]});
         }
         //if no valid inputs, send error
         else {
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
             .setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} Error | Please add your method!`)
-            .setDescription(`\`loop song\` / \`loop queue\``)
+		  .setDescription(`\`loop song\` / \`loop queue\``)]}
           );
         }
       } catch (e) {
           console.log(String(e.stack).bgRed)
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
               .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-              .setDescription(`\`\`\`${e.message}\`\`\``)
+		  .setDescription(`\`\`\`${e.message}\`\`\``)]}
           );
       }
     }

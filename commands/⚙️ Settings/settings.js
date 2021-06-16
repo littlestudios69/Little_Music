@@ -47,7 +47,7 @@ module.exports = {
 
         let db = client.setups.get(message.guild.id)
 
-        message.channel.send(new MessageEmbed()
+        message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.color)
           .setFooter(ee.footertext,ee.footericon)
           .setThumbnail(message.guild.iconURL({dynamic:true}))
@@ -55,15 +55,15 @@ module.exports = {
           .addField(`${emoji.msg.dj} DJ Roles`, leftd.substr(0, leftb.length - 3).substr(0, 1024), true)
           .addField(`${emoji.msg.premium} Guild Premium`, `${gpremium ? (gpremium.enabled ? `${emoji.msg.enabled} Enabled` : `${emoji.msg.disabled} Disabled\nDm to enable:\n> ${ownerstringarray.substr(0, ownerstringarray.length)}`.substr(0, 1020)) : `${emoji.msg.disabled} Disabled`}`, true)
           .addField(`${emoji.msg.setup} Setup`, `VoiceChannel: ${db.voicechannel != 0 ? message.guild.channels.cache.get(db.voicechannel).name  : `${emoji.msg.ERROR} Disabled`}\nTextChannel: ${db.textchannel != 0 ? message.guild.channels.cache.get(db.textchannel).name  : `${emoji.msg.disabled} Disabled`}`, true)
-          .addField(`${emoji.msg.dj} DJ-Only-Commands`, leftdj.substr(0, leftdj.length - 3).substr(0, 1024), true)
+		.addField(`${emoji.msg.dj} DJ-Only-Commands`, leftdj.substr(0, leftdj.length - 3).substr(0, 1024), true)]}
         )
       } catch (e) {
           console.log(String(e.stack).bgRed)
-          return message.channel.send(new MessageEmbed()
+          return message.channel.send({embeds: [new MessageEmbed()
               .setColor(ee.wrongcolor)
   						.setFooter(ee.footertext, ee.footericon)
               .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-              .setDescription(`${e.message}`)
+				.setDescription(`${e.message}`)]}
           );
       }
     },

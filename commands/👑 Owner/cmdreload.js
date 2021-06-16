@@ -10,10 +10,10 @@ module.exports = {
     usage: `cmdreload <CMD>`,
     run: async (client, message, args, cmduser, text, prefix) => {
       if (!config.ownerIDS.includes(message.author.id))
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(client.user.username, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR}  Error | You are not allowed to run this command! Only the Owner is allowed to run this Cmd`)
+		.setTitle(`${emoji.msg.ERROR}  Error | You are not allowed to run this command! Only the Owner is allowed to run this Cmd`)]}
         );
         try {
             let reload = false;
@@ -21,10 +21,10 @@ module.exports = {
                 let dir = client.categories[i];
                 try{
                     if(!args[0])
-                      return message.channel.send(new MessageEmbed()
+                      return message.channel.send({embeds: [new MessageEmbed()
                         .setColor(ee.wrongcolor)
             						.setFooter(ee.footertext, ee.footericon)
-                        .setTitle(`${emoji.msg.ERROR}  ERROR | Please include an argument`)
+					  .setTitle(`${emoji.msg.ERROR}  ERROR | Please include an argument`)]}
                       );
                       delete require.cache[require.resolve(`../../commands/${dir}/${args[0]}.js`)] // usage !reload <name>
                       client.commands.delete(args[0])
@@ -34,23 +34,23 @@ module.exports = {
                 }catch{ }
             }
             if(reload)
-              return message.channel.send(new MessageEmbed()
+              return message.channel.send({embeds: [new MessageEmbed()
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
-                .setTitle(`${emoji.msg.SUCCESS}  SUCCESS | Reloaded \`${args[0]}\``)
+			  .setTitle(`${emoji.msg.SUCCESS}  SUCCESS | Reloaded \`${args[0]}\``)]}
               );
-              return message.channel.send(new MessageEmbed()
+              return message.channel.send({embeds: [new MessageEmbed()
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
-                .setTitle(`${emoji.msg.ERROR}  ERROR | Could not reload: \`${args[0]}\``)
+			  .setTitle(`${emoji.msg.ERROR}  ERROR | Could not reload: \`${args[0]}\``)]}
               );
           } catch (e) {
               console.log(String(e.stack).bgRed)
-              return message.channel.send(new MessageEmbed()
+              return message.channel.send({embeds: [new MessageEmbed()
                   .setColor(ee.wrongcolor)
       						.setFooter(ee.footertext, ee.footericon)
                   .setTitle(`${emoji.msg.ERROR}  ERROR | An error occurred`)
-                  .setDescription(`\`\`\`${e.message}\`\`\``)
+			  .setDescription(`\`\`\`${e.message}\`\`\``)]}
               );
           }
     },

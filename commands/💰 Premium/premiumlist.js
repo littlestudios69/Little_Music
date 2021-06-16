@@ -50,13 +50,13 @@ module.exports = {
         .setTitle("All Guilds with premium access")
         .setDescription("`"+guilds.join("`, `")+"`")
         for(let i = 0; i<guildembed.description.length; i+= 2048){
-          message.channel.send(guildembed.setDescription(("`"+guilds.join("`, `")+"`").substring(i, i + 2048)))
+          message.channel.send({embeds: [guildembed.setDescription(("`"+guilds.join("`, `")+"`").substring(i, i + 2048))]})
         }
         let userembed = new MessageEmbed().setColor(ee.color).setFooter(ee.footertext, ee.footericon)
         .setTitle("All Users with premium access")
         .setDescription("`"+users.join("`, `")+"`")
         for(let i = 0; i<userembed.description.length; i+= 2048){
-          message.channel.send(userembed.setDescription(("`"+users.join("`, `")+"`").substring(i, i + 2048)))
+          message.channel.send({embeds: [userembed.setDescription(("`"+users.join("`, `")+"`").substring(i, i + 2048))]})
         }
       }
       else if(args[0].toLowerCase() === "u"||args[0].toLowerCase() === "user"||args[0].toLowerCase() === "users")
@@ -65,7 +65,7 @@ module.exports = {
         .setTitle("All Users with premium access")
         .setDescription("`"+users.join("`, `")+"`")
         for(let i = 0; i<userembed.description.length; i+= 2048){
-          message.channel.send(userembed.setDescription(("`"+users.join("`, `")+"`").substring(i, i + 2048)))
+          message.channel.send({embeds: [userembed.setDescription(("`"+users.join("`, `")+"`").substring(i, i + 2048))]})
         }
       }
       else if(args[0].toLowerCase() === "g"||args[0].toLowerCase() === "guild"||args[0].toLowerCase() === "guilds")
@@ -74,7 +74,7 @@ module.exports = {
         .setTitle("All Guilds with premium access")
         .setDescription("`"+guilds.join("`, `")+"`")
         for(let i = 0; i<guildembed.description.length; i+= 2048){
-          message.channel.send(guildembed.setDescription(("`"+guilds.join("`, `")+"`").substring(i, i + 2048)))
+          message.channel.send({embeds: [guildembed.setDescription(("`"+guilds.join("`, `")+"`").substring(i, i + 2048))]})
         }
       }
       else {
@@ -82,11 +82,11 @@ module.exports = {
       }
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
             .setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR}  ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

@@ -11,26 +11,26 @@ module.exports = {
     description: "Gives you information on how fast the Bot can respond to you",
     run: async (client, message, args, user, text, prefix) => {
     try{
-      message.channel.send(new MessageEmbed()
+      message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.color)
         .setFooter(ee.footertext, ee.footericon)
-        .setDescription(`${emoji.msg.ping} Pinging....`)
+	  .setDescription(`${emoji.msg.ping} Pinging....`)]}
       ).then(msg=>{
-        msg.edit(new MessageEmbed()
+        msg.edit({embeds: [new MessageEmbed()
           .setColor(ee.color)
           .setFooter(ee.footertext, ee.footericon)
           .setDescription(`${emoji.msg.ping} Ping is \`${Math.round(client.ws.ping)}ms\``)
-          .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
+		.setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")]}
 
         );
       })
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
             .setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

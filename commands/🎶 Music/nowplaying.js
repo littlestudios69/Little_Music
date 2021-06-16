@@ -15,37 +15,37 @@ module.exports = {
       const { channel } = message.member.voice;
       //if the member is not in a channel, return
       if (!channel)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(client.user.username, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)
+		.setTitle(`${emoji.msg.ERROR} Error | You need to join a voice channel.`)]}
         );
       //get the player instance
       const player = client.manager.players.get(message.guild.id);
       //if no player available return error | aka not playing anything
       if (!player)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(client.user.username, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)
+		.setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)]}
         );
       //if not in the same channel as the player, return Error
       if (channel.id !== player.voiceChannel)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setFooter(ee.footertext, ee.footericon)
           .setColor(ee.wrongcolor)
           .setTitle(`${emoji.msg.ERROR} Error | You need to be in my voice channel to use this command!`)
-          .setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)
+		.setDescription(`Channelname: \`${message.guild.channels.cache.get(player.voiceChannel).name}\``)]}
         );
       //if no current song return error
       if (!player.queue.current)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
           .setColor(ee.wrongcolor)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)
+		.setTitle(`${emoji.msg.ERROR} Error | There is nothing playing`)]}
         );
       //Send Now playing Message
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
           .setAuthor(`Current song playing:`, message.author.displayAvatarURL({ dynamic: true }))
           .setThumbnail(`https://img.youtube.com/vi/${player.queue.current.identifier}/hqdefault.jpg`)
           .setURL(player.queue.current.uri)
@@ -58,15 +58,15 @@ module.exports = {
           .addField(`${emoji.msg.repeat_mode} Queue length: `, `\`${player.queue.length} Songs\``, true)
           .addField(`${emoji.msg.time} Progress: `, createBar(player))
           .setFooter(`Requested by: ${player.queue.current.requester.tag}`, player.queue.current.requester.displayAvatarURL({ dynamic: true }))
-          .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
+	  .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")]}
         );
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`\`\`\`${e.message}\`\`\``)
+		.setDescription(`\`\`\`${e.message}\`\`\``)]}
         );
     }
   }

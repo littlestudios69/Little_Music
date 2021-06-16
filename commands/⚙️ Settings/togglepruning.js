@@ -14,19 +14,19 @@ module.exports = {
       //set the new prefix
       client.settings.set(message.guild.id, !client.settings.get(message.guild.id, `pruning`), `pruning`);
       //return success embed
-      return message.channel.send(new MessageEmbed()
+      return message.channel.send({embeds: [new MessageEmbed()
         .setColor(ee.color)
         .setFooter(ee.footertext, ee.footericon)
         .setTitle(`${emoji.msg.SUCCESS} Success | ${client.settings.get(message.guild.id, `pruning`) ? `${emoji.msg.enabled} Enabled` : `${emoji.msg.ERROR} Disabled`} Pruning`)
-        .setDescription(`I will now ${client.settings.get(message.guild.id, `pruning`) ? `` : `not`} send a message with Track Information, if I am on "AFK"`)
+	  .setDescription(`I will now ${client.settings.get(message.guild.id, `pruning`) ? `` : `not`} send a message with Track Information, if I am on "AFK"`)]}
       );
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        return message.channel.send(new MessageEmbed()
+        return message.channel.send({embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
             .setTitle(`${emoji.msg.ERROR} ERROR | An error occurred`)
-            .setDescription(`${e.message}`)
+		.setDescription(`${e.message}`)]}
         );
     }
   }
