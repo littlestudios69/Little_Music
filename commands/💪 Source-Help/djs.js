@@ -12,11 +12,19 @@ module.exports = {
   description: "DOES SEARCH FOR THE DISCORD.JS DOCS and gives u help",
   run: async (client, message, args, user, text, prefix) => {
     try {
-      const urltosearch = `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${args.join(" ")}`;
+      if (!args[0])
+      return message.channel.send({embeds: [new MessageEmbed()
+          .setColor(ee.wrongcolor)
+          .setFooter(ee.footertext, ee.footericon)
+  .setTitle(`${emoji.msg.ERROR} Error | You need to give me a Search term.`)]}
+      );
+      const urltosearch = `https://djsdocs.sorta.moe/v2/embed?src=master&q=${args.join(" ")}`;
       axios.get(urltosearch).then(embed => {
           const { data } = embed;
-          data.color = ee.color
-          message.channel.send({embed: data});
+          embed.data.color = "#d117c8"
+
+        let djs = new MessageEmbed(data)
+          message.channel.send({embeds: [djs]});
       });
     } catch (e) {
         console.log(String(e.stack).bgRed)

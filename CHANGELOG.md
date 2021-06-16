@@ -2,7 +2,18 @@
 
 
 ### Table Of Content
+- [Version 2.0.2-Hotfix](#version-2.0.2-Hotfix)
 - [Version 2.0.2](#version-2.0.2)
+
+
+## Version 2.0.2 Hotfix
+
+### HotFixes
++ Fixed djs Command
+
++ Fixed docs Command
+
+- Removed Lavalink Command
 
 
 ## Version 2.0.2

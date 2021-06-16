@@ -12,10 +12,10 @@ module.exports = {
     run: async (client, message, args, user, text, prefix) => {
     try{
       message.channel.send({embeds: [new MessageEmbed()
-        .setTitle(`This Bot is made by \`Tomato#6966\` and **this** is the Source Code link to this Bot`)
+        .setTitle(`This Bot is made by \`Tayron#1111\` and **this** is the Source Code link to this Bot`)
         .setColor(ee.color)
         .setFooter(ee.footertext, ee.footericon)
-	  .setDescription(`WOAH THERE ARE DOCS!?!!?\n[\`CLICK HERE\`](https://discord.js.org/#/docs/main/stable/general/welcome)\nYes, discord.js has docs that can be used when creating a bot with it.\nIf you need some pointers for using the docs watch a video by one of our Lower Management Members\n\nhttps://www.youtube.com/watch?v=CvcDpm4PsnI`)]}
+	  .setDescription(`WOAH THERE ARE DOCS!?!!?\n[\`CLICK HERE\`](https://discord.js.org/#/docs/main/master/general/welcome)\nYes, discord.js has docs that can be used when creating a bot with it.\nIf you need some pointers for using the docs watch a video by one of our Lower Management Members\n\nhttps://www.youtube.com/watch?v=CvcDpm4PsnI`)]}
       );
     } catch (e) {
         console.log(String(e.stack).bgRed)
