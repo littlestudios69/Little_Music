@@ -56,7 +56,9 @@ module.exports = {
                 .addField("🎵 SERVER Songs played:", `>>> \`${guild.songs} Songs\` played in\n**this** Server`, true)
                 .addField("📰 GLOBAL Premium list:", `>>> \`${guilds.length} Guilds\`\n\`${users.length} Users\`\n having Premium`, true)
                 .addField("\u200b", "\u200b")
-                .addField("ℹ️ Disclaimer", `>>> This Bot is a higly Modified Fork of [Tomato6966/discord-js-lavalink-Music-Bot-erela-js](https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js)`)
+                .addField("📊 Status Page", ">>> [Click here](https://littlestudios.statuspage.io)", true)
+                .addField("🤝 Support Server", ">>> [Click here](https://discord.gg/kUuNQwnvCF)", true)
+                .addField("ℹ️ Disclaimer", `>>> This Bot is a higly Modified Fork of [Tomato6966/discord-js-lavalink-Music-Bot-erela-js](https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js)`, true)
                 .setTitle(`💿 The Stats of ${client.user.username}`)
                 .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
 
@@ -70,14 +72,8 @@ module.exports = {
                 .setStyle("LINK")
                 .setURL(`https://discord.gg/kUuNQwnvCF`)
 
-           let invitebutton = new Discord.MessageButton()
-                .setLabel("Invite")
-                .setURL(`https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=1194721105&scope=bot`)
-                .setStyle("LINK")
-
-
             let actionRow = new Discord.MessageActionRow()
-                .addComponents([statusPageButton, supportButton, invitebutton])
+                .addComponents([statusPageButton, supportButton])
 
             message.channel.send({components: [actionRow], embeds: [embed]});
         } catch (e) {

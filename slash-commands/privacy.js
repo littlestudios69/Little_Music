@@ -27,12 +27,6 @@ module.exports = class PrivacyCommand extends SlashCommand {
                     type: ComponentType.BUTTON,
                     style: ButtonStyle.LINK,
                     label: 'Privacy Policy',
-                    url: 'https://little-studios.tech/privacy'
-                },
-                {
-                    type: ComponentType.BUTTON,
-                    style: ButtonStyle.LINK,
-                    label: 'Privacy Policy (Alternative)',
                     url: 'https://paste.gg/p/anonymous/fdd9e0258d7f496b89cc880a82c85a2b'
                 }]
             }]
