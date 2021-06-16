@@ -66,12 +66,27 @@ module.exports = {
               .addField("\u200b", `\u200b`, true)
               .addField("\u200b", `\u200b`)
               .addField("\u200b", `\u200b`)
-              .addField("📊 Status Page", "[Click here](https://littlestudios.statuspage.io)", true)
-              .addField("🤝 Support Server", "[Click here](https://discord.gg/kUuNQwnvCF)", true)
               .addField("ℹ️ Disclaimer", `This Bot is a higly Modified Fork of [Tomato6966/discord-js-lavalink-Music-Bot-erela-js](https://github.com/Tomato6966/discord-js-lavalink-Music-Bot-erela-js)`)
               .setImage("https://cdn.discordapp.com/attachments/802144342185738250/820385232686546945/cover.png")
 
-            message.channel.send({embeds: [botinfo]});
+              let button = new Discord.MessageButton()
+              .setLabel("Invite")
+              .setURL(`https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=1194721105&scope=bot`)
+              .setStyle("LINK")
+              let button2 = new Discord.MessageButton()
+              .setLabel("Status Page")
+              .setURL(`https://littlestudios.statuspage.io`)
+              .setStyle("LINK")
+
+              let button3 = new Discord.MessageButton()
+              .setLabel("Support Server")
+              .setURL(`https://discord.gg/kUuNQwnvCF`)
+              .setStyle("LINK")
+            
+          let actionRow = new Discord.MessageActionRow()
+              .addComponents([button])
+
+            message.channel.send({components: [actionRow], embeds: [botinfo]});
           })
           .catch(console.error);
 
