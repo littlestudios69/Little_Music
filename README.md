@@ -1,3 +1,5 @@
+# THIS REPOSITORY IS OUT OF DATE AND NOT THE SOURCE OF THE CURRENT LITTLE MUSIC!!
+
 # Little Music
 
 Little Music is another Bot from the Little Studios Family!
