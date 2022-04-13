@@ -1,4 +1,4 @@
-# THIS REPOSITORY IS OUT OF DATE AND NOT THE SOURCE OF THE CURRENT LITTLE MUSIC!!
+## This repository has been archived and will not receive any further updates! However if you still wanna use it you can work on it yourself or create a fork.
 
 # Little Music
 
